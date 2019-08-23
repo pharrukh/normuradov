@@ -1,0 +1,19 @@
+$themes: (
+
+  'light': (
+      
+  ), 
+  
+  'dark': (
+
+  )   
+
+);
+
+@each $theme, $map in $themes {
+  :root[data-theme=#{$theme}] {
+    @each $property, $value in $map {
+      --#{$property}: #{$value};
+    }
+  }
+}
