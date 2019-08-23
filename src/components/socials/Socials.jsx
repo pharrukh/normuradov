@@ -10,7 +10,7 @@ const Socials = () => (
     {links.map( (link, i) => (
       <a href={links.link}>
         <svg className="icon">
-          <use href={`#icon-${link.name}`} />
+          <use href={link.icon} />
         </svg>
       </a>
     ))}
