@@ -8,7 +8,7 @@ import { links } from "./links";
 const Socials = () => (
   <div className="socials">
     {links.map( (link, i) => (
-      <a href={links.link}>
+      <a href={links.link} key={i}>
         <svg className="icon">
           <use href={link.icon} />
         </svg>
