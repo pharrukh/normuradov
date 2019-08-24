@@ -1,0 +1,109 @@
+#blog-post {
+  width: 100vw;
+  height: auto;
+  min-height: 100vh;
+  padding-top: 10vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--background-main);
+
+  main {
+    width: 768px;
+  }
+  
+  .header {
+    grid-area: header;
+  
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: center;
+    justify-items: center;
+  
+    h1 {
+      align-self: flex-start;
+      font-family: $font-header;
+      font-size: 1.4rem;
+    }
+
+    h2 {
+      font-family: $font-header;
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+  
+    .keywords {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 0.9rem;
+  
+      span {
+
+        & + span {
+          margin-left: 0.4em;
+        }
+  
+        &::before {
+          content: "#";
+          font-weight: 800;
+          color: var(--color-link);
+        }
+      }
+  
+    }
+  
+  }
+
+  pre {
+    font-size: 0.75rem;
+    border-radius: 5px;
+
+    // scrollbar
+    &::-webkit-scrollbar {
+      height: 7.5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #888; 
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+  }
+  
+  article {
+    font-family: $font-content;
+    font-size: 0.75rem;
+    text-align: justify;
+
+    h4 {
+      color: var(--color-main);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      position: relative;
+
+      &::before {
+        content: "#";
+        color: var(--color-link);
+        position: absolute;
+        left: -20px;
+      }
+    }
+
+    a {
+      color: var(--color-link);
+    }
+  }
+
+}
