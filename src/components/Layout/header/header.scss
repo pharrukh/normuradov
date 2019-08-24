@@ -1,0 +1,49 @@
+header {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-areas:
+    "logo-icon title"
+    "logo-icon socials";
+  grid-template-columns: 10% 40%;
+  grid-template-rows: 60% 40%;
+  grid-column-gap: 3.5%;
+
+  .logo {
+    grid-area: logo-icon;
+    fill: var(--icon-fill-main);
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.85);
+    }
+
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  h1 {
+    grid-area: title;
+    align-self: center;
+    font-size: 1.2rem;
+    user-select: none;
+    font-family: $font-header;
+    
+    a {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: var(--color-main);
+    }
+  }
+
+  .socials {
+    grid-area: socials;
+    justify-self: center;
+    align-self: center;
+  }
+}
