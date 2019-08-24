@@ -1,0 +1,25 @@
+.socials {
+  $items: 5;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 10%;
+  }
+
+  svg {
+    height: 100%;
+    width: auto;
+    fill: var(--icon-fill-main);
+  }
+}
