@@ -1,11 +1,23 @@
 $themes: (
 
   'light': (
-      
+    // layout
+    background-main: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%),
+    // typography
+    color-main: black,
+    color-link: rgb(29, 31, 33),
+    // icons
+    icon-fill-main: black  
   ), 
   
   'dark': (
-
+    // layout
+    background-main: rgb(29, 31, 33),
+    // typography
+    color-main: white,
+    color-link: rgba(43, 154, 74, 0.75),
+    // icons
+    icon-fill-main: white  
   )   
 
 );
