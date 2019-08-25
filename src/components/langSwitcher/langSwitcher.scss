@@ -1,0 +1,45 @@
+#lang-switcher {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  label {
+    margin-right: 0.4em;
+  }
+
+  select,
+  option {
+    font-family: $font-header;
+    font-size: 0.55rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    border: none;
+  }
+
+  option {
+    background: var(--background-main);
+  }
+
+
+  select {
+    background: transparent;
+    color: var(--color-main);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+
+
+
+  /* &::-ms-expand {
+    display: none;
+  } */
+
+}
