@@ -6,6 +6,7 @@ $themes: (
     // typography
     color-main: black,
     color-link: rgb(29, 31, 33),
+    color-link-hover: brightness(350%),
     // icons
     icon-fill-main: black  
   ), 
@@ -16,6 +17,7 @@ $themes: (
     // typography
     color-main: white,
     color-link: rgba(43, 154, 74, 0.75),
+    color-link-hover: brightness(150%),
     // icons
     icon-fill-main: white  
   )   
