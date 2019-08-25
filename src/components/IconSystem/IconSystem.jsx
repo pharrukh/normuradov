@@ -3,7 +3,7 @@ import React from 'react';
 // Logo Icon
 // Socials: GitHub, LinkedIn, Telegram, StackOverflow, mail, write-a-letter
 // Languages: JS, C#, TS
-// Utility: Location, Pen
+// Utility: Location, Pen, Tag, Time
 
 const IconSystem = props => (
 
@@ -74,6 +74,16 @@ const IconSystem = props => (
     <symbol id="icon-pen" viewBox="0 0 24 24">
       <title>Pen</title>
       <path d="M15.54,3.5L20.5,8.47L19.07,9.88L14.12,4.93L15.54,3.5M3.5,19.78L10,13.31C9.9,13 9.97,12.61 10.23,12.35C10.62,11.96 11.26,11.96 11.65,12.35C12.04,12.75 12.04,13.38 11.65,13.77C11.39,14.03 11,14.1 10.69,14L4.22,20.5L14.83,16.95L18.36,10.59L13.42,5.64L7.05,9.17L3.5,19.78Z"/>
+    </symbol>
+
+    <symbol id="icon-tag" viewBox="0 0 24 24">
+      <title>Tag</title>
+      <path d="M5.5,7A1.5,1.5 0 0,1 4,5.5A1.5,1.5 0 0,1 5.5,4A1.5,1.5 0 0,1 7,5.5A1.5,1.5 0 0,1 5.5,7M21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4C2.89,2 2,2.89 2,4V11C2,11.55 2.22,12.05 2.59,12.41L11.58,21.41C11.95,21.77 12.45,22 13,22C13.55,22 14.05,21.77 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.44 21.77,11.94 21.41,11.58Z"/>
+    </symbol>
+
+    <symbol id="icon-time" viewBox="0 0 24 24">
+      <title>Time</title>
+      <path d="M6,2H18V8H18V8L14,12L18,16V16H18V22H6V16H6V16L10,12L6,8V8H6V2M16,16.5L12,12.5L8,16.5V20H16V16.5M12,11.5L16,7.5V4H8V7.5L12,11.5M10,6H14V6.75L12,8.75L10,6.75V6Z"/>
     </symbol>    
 
   </svg>
