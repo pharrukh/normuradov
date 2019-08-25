@@ -1,0 +1,40 @@
+#layout-main {
+  width: 100vw;
+  height: auto;
+  min-height: 100vh;
+  padding-top: 10vh;
+  background: var(--background-main);
+
+  display: grid;
+  grid-template-areas:
+    ". header ."
+    ". content ."
+    ". footer .";
+  grid-template-columns: 1fr 27.5rem 1fr; // 30rem
+  grid-template-rows: 10vh auto 7.5vh;
+  grid-row-gap: 3rem;
+
+  @include mobile {
+    padding: 10vh 7.5vw 2vh 7.5vw;
+
+    grid-template-areas:
+      "header"
+      "content"
+      "footer";
+    grid-template-columns: 1fr;
+  }
+
+
+  header {
+    grid-area: header;
+  }
+
+  main {
+    grid-area: content;
+  }
+
+  footer {
+    grid-area: footer; 
+  }
+
+}
