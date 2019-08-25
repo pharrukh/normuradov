@@ -32,6 +32,7 @@ exports.createPages = async ({ actions, graphql }) => {
             frontmatter {
               path
               date
+              lang
               title
               keywords
               description
