@@ -6,19 +6,25 @@ import SEO from "../components/seo";
 
 const IndexPage = (props) => {
 
-  const [ language, switchLang ] = useState("en");
+  const [ language, switchLang ] = useState(
+    localStorage.getItem("lastChosenLang") ||
+    document.documentElement.getAttribute("lang") ||
+    "en"
+  );
 
   const setPageSettings = () => {
-    const theme = localStorage.getItem("lastChosenTheme");
-    const lang = localStorage.getItem("lastChosenLang");
+    const theme = localStorage.getItem("lastChosenTheme") || "light";
+    const lang = localStorage.getItem("lastChosenLang") || "en";
 
-    (theme)
-      ? document.documentElement.setAttribute("data-theme", theme)
-      : document.documentElement.setAttribute("data-theme", "light");
+    document.documentElement.setAttribute(
+      "data-theme",
+      theme || "light"
+    );
 
-    (lang)
-      ? document.documentElement.setAttribute("lang", lang)
-      : document.documentElement.setAttribute("lang", "en");
+    document.documentElement.setAttribute(
+      "lang",
+      lang || "en"
+    );
   }
 
   useEffect(setPageSettings);
