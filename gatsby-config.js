@@ -5,12 +5,16 @@ module.exports = {
     author: `Farrukh Normuradov`,
   },
   plugins: [
+
     `gatsby-plugin-react-helmet`,
+
     `gatsby-plugin-catch-links`,
+
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -42,16 +46,34 @@ module.exports = {
               },
             },
           },
+
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 768,
+            },
+          },
+
         ],
       },
     },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/pages`,
-        name: `pages`
+        path: `${__dirname}/src/posts`,
+        name: `posts`
       }
     },
+
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/posts/images`,
+        name: `images`
+      }
+    },
+
     {
       resolve: `gatsby-plugin-sass`,
       options: {
@@ -61,6 +83,7 @@ module.exports = {
         ],
       },
     },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -68,8 +91,11 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+
     `gatsby-transformer-sharp`,
+
     `gatsby-plugin-sharp`,
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
