@@ -11,10 +11,18 @@ import Socials from "components/socials/Socials";
 const Header = ({ siteTitle }) => {
 
   const changeTheme = () => {
-    const theme = document.documentElement.getAttribute("data-theme");
-    (theme === "light")
-      ? document.documentElement.setAttribute("data-theme", "dark")
-      : document.documentElement.setAttribute("data-theme", "light")
+    const theme = document.documentElement.getAttribute("data-theme") || "light";
+
+    document.documentElement.setAttribute(
+      "data-theme",
+      (theme === "light") ? "dark" : "light"
+    );
+
+    localStorage.setItem(
+      "lastChosenItem",
+      document.documentElement.getAttribute("data-theme")
+    );
+
   }
 
   return (
