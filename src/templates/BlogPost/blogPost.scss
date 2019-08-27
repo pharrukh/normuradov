@@ -1,37 +1,37 @@
 #blog-post {
-  width: 100vw;
-  height: auto;
-  min-height: 100vh;
-  padding-top: 10vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  #layout-main {
+    padding-top: 5vh;
+    grid-row-gap: 5vh;
 
-  background: var(--background-main);
+    .socials {
+      display: none;
+    }
+  }
 
   main {
-    width: 768px;
+    border-top: var(--border-section);
+    padding-top: 5vh;
   }
-  
+
+  // blog-title
   .header {
-    grid-area: header;
-  
-    display: flex;
-    flex-flow: column nowrap;
-    align-content: center;
-    justify-items: center;
+    display: grid;
+    grid-template-rows: 1fr 0.5fr 0.5fr;
+    grid-row-gap: 0.25rem;
   
     h1 {
       align-self: flex-start;
       font-family: $font-header;
       font-size: 1.4rem;
+      color: var(--color-main);
     }
 
     h2 {
       font-family: $font-header;
       font-size: 0.8rem;
       font-weight: 400;
+      color: var(--color-main);
     }
   
     .keywords {
@@ -40,8 +40,10 @@
       justify-content: flex-start;
       align-items: center;
       font-size: 0.9rem;
+      color: var(--color-main);
   
       span {
+        font-weight: 400;
 
         & + span {
           margin-left: 0.4em;
@@ -49,6 +51,7 @@
   
         &::before {
           content: "#";
+          margin-right: 0.2em;
           font-weight: 800;
           color: var(--color-link);
         }
@@ -58,9 +61,15 @@
   
   }
 
+  // code blocks
+  .gatsby-highlight {
+    max-width: 100%;
+  }
+
   pre {
     font-size: 0.75rem;
     border-radius: 5px;
+    background: #212326;
 
     // scrollbar
     &::-webkit-scrollbar {
@@ -80,17 +89,49 @@
     }
   }
   
+  // article text
   article {
+    overflow-x: auto;
     font-family: $font-content;
     font-size: 0.75rem;
     text-align: justify;
+    color: var(--color-main);
+    width: 100%;
+    max-width: 100%;
+
+    & > * {
+      margin-bottom: 1em;
+    }
+
+    p {
+      line-height: 1.2em;
+    }
+
+    br {
+      line-height: 200%;
+    }
+
+    blockquote {
+      text-align: center;
+      font-style: italic;
+    }
+
+    a {
+      color: var(--color-link);
+
+      &:hover {
+        color: var(--color-link-hover);
+      }
+    }
+
+    img {
+      border-radius: 10px;
+    }
 
     h4 {
       color: var(--color-main);
       font-weight: 600;
       font-size: 0.9rem;
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
       position: relative;
 
       &::before {
@@ -104,6 +145,8 @@
     a {
       color: var(--color-link);
     }
+
+    
   }
 
 }
