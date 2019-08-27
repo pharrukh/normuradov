@@ -36,10 +36,15 @@
     }
   }
 
+}
 
+@include mobile {
 
-  /* &::-ms-expand {
-    display: none;
-  } */
+  #lang-switcher {
+    option,
+    select {
+      font-size: 0.75rem;
+    }
+  }
 
 }
