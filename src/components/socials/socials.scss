@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1.25rem;
+    width: 1rem;
     height: 100%;
 
     & + a {
@@ -20,7 +20,7 @@
     svg {
       fill: var(--icon-fill-main);
       height: 100%;
-      width: 1.25rem;
+      width: 1rem;
     }
   }
 
