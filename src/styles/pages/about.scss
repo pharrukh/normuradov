@@ -1,0 +1,30 @@
+#about-page {
+
+  article {
+    font-family: $font-content;
+    font-weight: 400;
+    text-align: justify;
+    color: var(--color-main);
+
+    h1 {
+      margin-bottom: 0.5em;
+    }
+    
+    p {
+      line-height: 1.2em;
+
+      & + p {
+        margin-bottom: 0.4em;
+      }
+    }
+
+    a {
+      color: var(--color-link);
+
+      &:hover {
+        filter: var(--color-link-hover);
+      }
+    }
+  }
+  
+}
