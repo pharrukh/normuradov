@@ -1,7 +1,4 @@
-footer {
-  /* height: 100%;
-  width: 100%; */
-
+/* footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,6 +8,36 @@ footer {
     font-family: $font-header;
     font-size: 0.55rem;
     color: var(--color-main);    
+  }
+
+} */
+
+footer {
+  display: grid;
+  grid-template-areas:
+    "socials socials"
+    "copyright language";
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 4vh 4vh;
+
+  .copyright,
+  .language {
+    font-family: $font-header;
+    font-size: 0.55rem;
+    color: var(--color-main);  
+  }
+
+  .copyright {
+    grid-area: copyright;
+  }
+
+  .language {
+    justify-self: end;
+    grid-area: language;
+  }
+
+  .socials {
+    grid-area: socials;
   }
 
 }
