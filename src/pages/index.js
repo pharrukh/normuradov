@@ -17,13 +17,11 @@ const IndexPage = (props) => {
     const lang = localStorage.getItem("lastChosenLang") || "en";
 
     document.documentElement.setAttribute(
-      "data-theme",
-      theme || "light"
+      "data-theme", theme
     );
 
     document.documentElement.setAttribute(
-      "lang",
-      lang || "en"
+      "lang", lang
     );
   }
 
@@ -32,6 +30,7 @@ const IndexPage = (props) => {
   const data = useStaticQuery(graphql`
     query BlogIndexQuery {
       allMarkdownRemark(
+        filter: {frontmatter: {type: {eq: "post"}}},
         sort: { order: DESC, fields: [frontmatter___date] }
       ) {
         edges {
