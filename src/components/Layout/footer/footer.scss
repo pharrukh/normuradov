@@ -17,7 +17,7 @@ footer {
   grid-template-areas:
     "socials socials"
     "copyright language";
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2.5fr 1fr;
   grid-template-rows: 4vh 4vh;
 
   .copyright,
@@ -38,6 +38,22 @@ footer {
 
   .socials {
     grid-area: socials;
+  }
+
+}
+
+@include mobile {
+
+  footer {
+
+    .copyright {
+      font-size: 0.75rem;
+    }
+
+    .language {
+      font-size: 0.75rem;
+    }
+
   }
 
 }
