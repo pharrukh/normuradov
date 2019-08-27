@@ -3,10 +3,13 @@ $themes: (
   'light': (
     // layout
     background-main: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%),
+    nav-mobile-background: rgb(255, 255, 255),
     // typography
     color-main: black,
     color-link: rgb(29, 31, 33),
     color-link-hover: brightness(350%),
+    //borders
+    border-section: 1px solid rgba(0, 0, 0, 0.25),
     // icons
     icon-fill-main: black  
   ), 
@@ -14,10 +17,13 @@ $themes: (
   'dark': (
     // layout
     background-main: rgb(29, 31, 33),
+    nav-mobile-background: rgb(15, 15, 15),
     // typography
     color-main: white,
     color-link: rgba(43, 154, 74, 0.75),
     color-link-hover: brightness(150%),
+    //borders
+    border-section: 1px solid rgba(250, 250, 250, 0.25),
     // icons
     icon-fill-main: white  
   )   
