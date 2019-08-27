@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, graphql } from "gatsby";
 
 import "./blogPost.scss";
 
+import Layout from "components/Layout/layoutMain/LayoutMain";
+
 const Template = ({ data }) => {
+
   const {frontmatter, html} = data.markdownRemark;
+  const [ language, switchLang ] = useState("en");
 
   return (
     <div id="blog-post">
-      <main>
-        <Link to="/">Go Back</Link>
+      <Layout switchLang={switchLang}>
+        
+      
         <div className="header">
           <h1>{frontmatter.title}</h1>
           <h2>{frontmatter.author}, {frontmatter.date}</h2>
@@ -22,7 +27,8 @@ const Template = ({ data }) => {
           </div>
         </div>
         <article dangerouslySetInnerHTML={{ __html: html }} />
-      </main>
+        
+      </Layout>
     </div>
   );
 };
