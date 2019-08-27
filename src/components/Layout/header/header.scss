@@ -72,10 +72,16 @@ header {
 
 @include mobile {
 
+  .header-mobile--hidden {
+    transform: scaleY(0);
+  }
+
   header {
     grid-template-columns: 15vw 1fr;
     grid-template-rows: 5vh 5vh;
     grid-column-gap: 12.5px;
+    transform-origin: 50% 0%;
+    transition: transform 0.25s ease;
 
     padding: 1vh 2.5vh;
     position: fixed;

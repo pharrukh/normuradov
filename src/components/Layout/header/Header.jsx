@@ -1,14 +1,22 @@
 // ! component uses IconSystem, do not forget to include
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 
 import "./header.scss";
 
-// import Socials from "components/socials/Socials";
+import { useScrollPosition } from "components/Layout/upButton/scroll.js";
 
 const Header = ({ siteTitle }) => {
+
+  const [ hidden, setHidden ] = useState(false);
+  
+  // hiding mobile header
+  useScrollPosition(({ prevPos, currPos }) => {
+    const isShow = currPos.y < prevPos.y;
+    if (isShow !== hidden) { setHidden(isShow) }
+  }, [hidden]); 
 
   // changing theme: light <-> dark
   const changeTheme = event => {
@@ -68,7 +76,7 @@ const Header = ({ siteTitle }) => {
   );
 
   return (
-    <header>
+    <header className={(hidden) ? "header-mobile--hidden" : ""} >
       {logo()}
       {title()}
       {links(linksData)} 
