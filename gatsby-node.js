@@ -23,25 +23,29 @@ exports.createPages = async ({ actions, graphql }) => {
   const postTemplate = path.resolve("src/templates/BlogPost/BlogPost.jsx");
 
   const result = await graphql(`
-    {
-      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-        edges {
-          node {
-            id
-            html
-            frontmatter {
-              path
-              date
-              lang
-              title
-              keywords
-              description
-              author
-            }
+  {
+    allMarkdownRemark(
+      filter: {frontmatter: {type: {eq: "post"}}},
+      sort: {order: DESC, fields: [frontmatter___date]}
+      ) {
+      edges {
+        node {
+          id
+          html
+          frontmatter {
+            path
+            date
+            lang
+            title
+            keywords
+            description
+            author
           }
         }
       }
+      totalCount
     }
+  }
   `);
 
   if (result.errors) {
