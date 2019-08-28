@@ -1,9 +1,13 @@
 module.exports = {
+
+  pathPrefix: "/normuradov",
+
   siteMetadata: {
     title: `normuradov`,
     description: `Farrukh Normuradov, personal blog`,
     author: `Farrukh Normuradov`,
   },
+
   plugins: [
 
     `gatsby-plugin-react-helmet`,
