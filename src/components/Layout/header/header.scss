@@ -24,15 +24,14 @@ header {
     text-transform: uppercase;
     user-select: none;
 
-    @include tablet {
-      font-size: 2rem;
-    }
-    
     a {
       text-decoration: none;
       color: var(--color-main);
     }
-    
+
+    @include tablet {
+      font-size: 2rem;
+    }    
   }
 
   nav {
@@ -69,6 +68,14 @@ header {
   }
 
 }
+
+
+
+// active link styling
+.nav-active {
+  color: var(--nav-active-color);
+}
+
 
 @include mobile {
 
