@@ -83,7 +83,12 @@ const IconSystem = props => (
     <symbol id="icon-time" viewBox="0 0 24 24">
       <title>Time</title>
       <path d="M6,2H18V8H18V8L14,12L18,16V16H18V22H6V16H6V16L10,12L6,8V8H6V2M16,16.5L12,12.5L8,16.5V20H16V16.5M12,11.5L16,7.5V4H8V7.5L12,11.5M10,6H14V6.75L12,8.75L10,6.75V6Z"/>
-    </symbol>    
+    </symbol>
+
+    <symbol id="icon-notepad" viewBox="0 0 24 24">
+      <title>Notepad</title>
+      <path d="M17,4V10L15,8L13,10V4H9V20H19V4H17M3,7V5H5V4C5,2.89 5.9,2 7,2H19C20.05,2 21,2.95 21,4V20C21,21.05 20.05,22 19,22H7C5.95,22 5,21.05 5,20V19H3V17H5V13H3V11H5V7H3M5,5V7H7V5H5M5,19H7V17H5V19M5,13H7V11H5V13Z"/>
+    </symbol>      
 
   </svg>
 
