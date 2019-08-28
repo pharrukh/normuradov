@@ -47,6 +47,8 @@ footer {
   footer {
 
     .copyright {
+      display: flex;
+      flex-flow: column;
       font-size: 0.75rem;
     }
 

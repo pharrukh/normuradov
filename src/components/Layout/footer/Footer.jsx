@@ -10,7 +10,8 @@ const Footer = (props) => (
   <footer>
     <Socials />
     <div className="copyright">
-      Copyright © {new Date().getFullYear()}, Farrukh Normuradov
+      <span>Copyright © {new Date().getFullYear()}, </span>
+      <span>Farrukh Normuradov</span> 
     </div>
     <div className="language">
       <LangSwitcher switchLang={props.switchLang} />
