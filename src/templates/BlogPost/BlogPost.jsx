@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, graphql } from "gatsby";
+import React, { useState, useEffect } from "react";
+import { graphql } from "gatsby";
 
 import "./blogPost.scss";
 
@@ -9,6 +9,23 @@ const Template = ({ data }) => {
 
   const {frontmatter, html} = data.markdownRemark;
   const [ language, switchLang ] = useState("en");
+
+  useEffect(
+    () => {
+      // language
+      switchLang(
+        localStorage.getItem("lastChosenLang") ||
+        document.documentElement.getAttribute("lang") ||
+        "en"
+      );
+      // theme
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("lastChosenTheme") || "light"
+      );
+    },
+    [language]
+  );
 
   return (
     <div id="blog-post">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
 import Layout from "components/Layout/layoutMain/LayoutMain";
@@ -7,10 +7,31 @@ import "styles/pages/about.scss";
 
 const About = props => {
 
-  const [ lang, switchLang ] = useState(
-    localStorage.getItem("lastChosenLang") ||
-    document.documentElement.getAttribute("lang") ||
-    "en"
+  // need during build time...
+  const isBrowser = typeof window !== `undefined`;
+
+  const [ language, switchLang ] = useState(
+    (isBrowser) ?
+      localStorage.getItem("lastChosenLang") ||
+      document.documentElement.getAttribute("lang") ||
+      "en" : ""
+  );
+
+  useEffect(
+    () => {
+      // language
+      switchLang(
+        localStorage.getItem("lastChosenLang") ||
+        document.documentElement.getAttribute("lang") ||
+        "en"
+      );
+      // theme
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("lastChosenTheme") || "light"
+      );
+    },
+    [language]
   );
 
   const { allMarkdownRemark: { edges : data } } = useStaticQuery(graphql`
@@ -44,7 +65,7 @@ const About = props => {
     <div id="about-page">
       <Layout switchLang={switchLang}>
         <article
-          dangerouslySetInnerHTML={{ __html: pages[lang].html}}>
+          dangerouslySetInnerHTML={{ __html: pages[language].html}}>
         </article>
       </Layout>
     </div>    
