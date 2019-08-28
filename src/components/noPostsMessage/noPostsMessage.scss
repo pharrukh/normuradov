@@ -1,0 +1,18 @@
+#no-posts-message {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-row-gap: 0.75rem;
+  place-items: center;
+
+  svg {
+    fill: var(--icon-fill-main);
+  }
+
+  p {
+    font-family: $font-header;
+    font-size: 1.35rem;
+    color: var(--color-main);
+    text-align: center;
+  }
+
+}
