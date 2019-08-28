@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./langSwitcher.scss";
 
@@ -6,7 +6,10 @@ const LangSwitcher = (props) => {
 
   const languages = [
     "en", "de", "ru", "uz"
-  ];  
+  ];
+  
+  // need during build time...
+  const isBrowser = typeof window !== `undefined`
 
   const handleChange = event => {
     event.preventDefault();
@@ -16,7 +19,7 @@ const LangSwitcher = (props) => {
     //    
     root.setAttribute("lang", option);
     // 
-    localStorage.setItem("lastChosenLang", option);
+    if (isBrowser) localStorage.setItem("lastChosenLang", option);
     props.switchLang(option);
   }
 
@@ -27,9 +30,10 @@ const LangSwitcher = (props) => {
         if="lang-switcher-form"
         onChange={ handleChange }
         defaultValue={
-          localStorage.getItem("lastChosenLang") ||
-          document.documentElement.getAttribute("lang") ||
-          "en"
+          (isBrowser) ?
+            localStorage.getItem("lastChosenLang") ||
+            document.documentElement.getAttribute("lang") ||
+            "en" : "en"
         }
       >
         {languages.map( (option, i) => (
