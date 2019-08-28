@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 
 import Layout from "components/Layout/layoutMain/LayoutMain";
@@ -9,28 +9,27 @@ import NoPostsMessage from "components/noPostsMessage/NoPostsMessage";
 const IndexPage = (props) => {
 
   // language "state" of the page
-  const [ language, switchLang ] = useState(
-    localStorage.getItem("lastChosenLang") ||
-    document.documentElement.getAttribute("lang") ||
-    "en"
-  );
-
-  // setting language and theme of the page
-  const setPageSettings = () => {
-    const theme = localStorage.getItem("lastChosenTheme") || "light";
-    const lang = localStorage.getItem("lastChosenLang") || "en";
-
-    document.documentElement.setAttribute(
-      "data-theme", theme
-    );
-
-    document.documentElement.setAttribute(
-      "lang", lang
-    );
-  }
+  const [ language, switchLang ] = useState("en");
 
   // update the settings upon refreshing
-  useEffect(setPageSettings);
+  useLayoutEffect(
+    () => {
+
+      // language
+      switchLang(
+        localStorage.getItem("lastChosenLang") ||
+        document.documentElement.getAttribute("lang") ||
+        "en"
+      );
+
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("lastChosenTheme") || "light"
+      );
+
+    },
+    [language]
+  );
 
   // quering the data from .md files to get posts menu
   // -> we need .md with type="post" frontmatter
