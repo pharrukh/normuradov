@@ -2,11 +2,13 @@ $themes: (
 
   'light': (
     // layout
-    background-main: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%),
+    background-main: linear-gradient(315deg, hsl(0, 0%, 100%) 0%, #d7e1ec 74%),
     nav-mobile-background: rgb(255, 255, 255),
+    nav-color: gray,
+    nav-active-color: black,
     // typography
     color-main: black,
-    color-link: rgb(29, 31, 33),
+    color-link: gray,
     color-link-hover: brightness(350%),
     //borders
     border-section: 1px solid rgba(0, 0, 0, 0.25),
@@ -18,6 +20,8 @@ $themes: (
     // layout
     background-main: rgb(29, 31, 33),
     nav-mobile-background: rgb(15, 15, 15),
+    nav-color: white,
+    nav-active-color: #e9d66b,
     // typography
     color-main: white,
     color-link: rgba(43, 154, 74, 0.75),
