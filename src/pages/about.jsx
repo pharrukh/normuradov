@@ -14,7 +14,7 @@ const About = props => {
     (isBrowser) ?
       localStorage.getItem("lastChosenLang") ||
       document.documentElement.getAttribute("lang") ||
-      "en" : ""
+      "en" : "en"
   );
 
   useEffect(
@@ -53,7 +53,7 @@ const About = props => {
     }
   `);
 
-  const pages = new Object();
+  const pages = {};
   data.forEach(document => {
     pages[document.node.frontmatter.lang] = {
       title: document.node.frontmatter.title,
@@ -65,7 +65,7 @@ const About = props => {
     <div id="about-page">
       <Layout switchLang={switchLang}>
         <article
-          dangerouslySetInnerHTML={{ __html: pages[language].html}}>
+          dangerouslySetInnerHTML={{ __html: pages[language].html }}>
         </article>
       </Layout>
     </div>    
