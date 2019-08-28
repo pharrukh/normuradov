@@ -1,4 +1,6 @@
 .socials {
+  $icon-size: 1rem;
+
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -10,8 +12,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1rem;
-    height: 100%;
+    width: $icon-size;
+    height: $icon-size;
 
     & + a {
       margin-left: 0.2rem;
@@ -19,9 +21,28 @@
 
     svg {
       fill: var(--icon-fill-main);
-      height: 100%;
-      width: 1rem;
+      width: $icon-size;
+      height: $icon-size;
     }
+  }
+
+}
+
+@include mobile {
+  $icon-size: 1.4rem;
+  
+  .socials {
+
+    a {
+      width: $icon-size;
+      height: $icon-size;
+
+      svg {
+        width: $icon-size;
+        height: $icon-size;
+      }
+    }
+    
   }
 
 }
