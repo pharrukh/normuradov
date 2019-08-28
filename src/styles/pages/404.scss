@@ -6,6 +6,14 @@
   
   main {
     grid-row-gap: 0;
+
+    a {
+      color: var(--color-link);
+  
+      &:hover {
+        filter: var(--color-link-hover);
+      }
+    }
   }
 
   h2, p, a {
@@ -20,16 +28,17 @@
     font-style: italic;
   }
 
-  a {
-    color: var(--color-link);
-
-    &:hover {
-      filter: var(--color-link-hover);
-    }
-  }
-
   .page-404-illustration {
     margin: 1rem 0;
   }
 
+}
+
+@include mobile {
+  #page-404 {
+    main {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+  }
 }
