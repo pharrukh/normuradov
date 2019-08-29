@@ -1,0 +1,209 @@
+#gdpr {
+  $width: 75vw;
+
+  display: grid;
+  grid-template-areas:
+    "header buttons"
+    "message form";
+  grid-template-columns: 5fr 3fr;
+  grid-template-rows: 2fr 4fr;
+  grid-gap: 0.25em 1.5em;
+  
+  position: fixed;
+  width: $width;
+  height: 45vh;
+  bottom: 0;
+  left: calc(50% - #{$width} / 2);
+  z-index: 12;
+  
+  background: var(--gdpr-background);
+  font-family: $font-header;
+  color: var(--color-main);
+  border-radius: 75px 75px 0 0;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  padding: 2rem 2rem;
+  
+  transition: transform 0.5s ease-in-out;
+
+  a {
+    color: var(--color-link);
+  }
+}
+
+//
+.gdpr--hidden {
+  transform: translateY(45vh);
+
+  @include mobile {
+    transform: translateY(50vh)
+  }
+}
+
+.body--darkened {
+  // applies to body
+  position: relative;
+  
+  &::before {
+    content: "";
+    z-index: 11;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+  }
+}
+
+
+.gdpr-header {
+  grid-area: header;
+
+  h4 {
+    font-size: 0.65rem;
+    font-weight: 400;
+  }
+}
+
+.gdpr-info {
+  grid-area: message;
+  text-align: justify;
+
+  p {
+    font-size: 0.75rem;
+
+    & + p {
+      margin-top: 0.45em;
+    }
+  }
+}
+
+.gdpr-allowence {
+  grid-area: buttons;
+  width: 70%;
+  height: 70%;
+  justify-self: center;
+  align-self: start;
+
+  .buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background: transparent;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 9px 12px rgba(0,0,0,0.22);
+  }
+  
+  button:nth-of-type(1),
+  button:nth-of-type(2) {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-family: $font-header;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  button:nth-of-type(1) {
+    border-radius: 10px 0 0 10px;
+    background: #4DB6AC;
+  }
+
+  button:nth-of-type(2) {
+    border-radius: 0 10px 10px 0;
+    background: #EF9A9A;
+  }
+
+}
+
+.gdpr-form {
+  $toggle-size: 2rem;
+
+  grid-area: form;
+
+  legend {
+    font-size: 0.65rem;
+    border-bottom: 1px solid rgba(19, 19, 19, 0.25);
+  }
+
+  #gdpr-mail {
+    display: none;
+  }
+
+  fieldset {
+    border: 1px solid rgba(19, 19, 19, 0.5);
+    border-radius: 10px;
+    height: 100%;
+  }
+
+  form {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 0.5em;
+    width: 100%;
+
+    P {
+      font-size: 0.75rem;
+      margin-left: 0.5em;
+    }
+  }
+
+  label {
+    cursor: pointer;
+    width: $toggle-size;
+    height: $toggle-size / 2;
+    background: grey;
+    display: block;
+    border-radius: $toggle-size / 2;
+    position: relative;
+  }
+
+  label:after {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: $toggle-size * 0.45;
+    height: $toggle-size * 0.45;
+    background: #fff;
+    border-radius: $toggle-size * 0.45;
+    transition: 0.3s;
+  }
+
+  input:checked + label {
+    background: #4DB6AC;
+  }
+  
+  input:checked + label::after {
+    left: calc(100% - 5%);
+    transform: translateX(-100%);
+  }
+  
+  label:active::after {
+    width: $toggle-size * 0.7;
+  }
+}
+
+@include mobile {
+
+  #gdpr {
+    left: 0;
+    width: 100vw;
+    height: 50vh;
+
+    grid-template-areas:
+      "header"
+      "message"
+      "form"
+      "buttons";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.25fr 4fr 1fr 1.5fr;
+    grid-row-gap: 0.8rem;
+
+    padding-bottom: 1.5vh;
+  }
+
+}
