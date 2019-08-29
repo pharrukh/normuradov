@@ -50,10 +50,12 @@ footer {
       display: flex;
       flex-flow: column;
       font-size: 0.75rem;
+      justify-content: flex-end;
     }
 
     .language {
       font-size: 0.75rem;
+      align-self: end;
     }
 
   }
