@@ -4,6 +4,7 @@ import { Link, graphql, useStaticQuery } from "gatsby";
 import Layout from "components/Layout/layoutMain/LayoutMain";
 import SEO from "../components/seo";
 
+import GDPR from "components/GDPR/GDPR";
 import NoPostsMessage from "components/noPostsMessage/NoPostsMessage";
 
 const IndexPage = (props) => {
@@ -85,12 +86,13 @@ const IndexPage = (props) => {
   );
 
   return (
-    <Layout switchLang={switchLang} >
-      <SEO title="Home" />
-      {
-        (posts[language]) ? renderPosts() : <NoPostsMessage />
-      }      
-    </Layout>
+    < >
+      <GDPR />
+      <Layout switchLang={switchLang} >
+        <SEO title="Home" />
+        { (posts[language]) ? renderPosts() : <NoPostsMessage /> }      
+      </Layout>
+    </>
   );
   
 }
