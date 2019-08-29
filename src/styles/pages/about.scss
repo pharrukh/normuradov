@@ -1,5 +1,9 @@
 #about-page {
 
+  #layout-main {
+    grid-row-gap: 1.5rem;
+  }
+
   article {
     font-family: $font-content;
     font-weight: 400;
