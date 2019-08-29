@@ -7,7 +7,7 @@ main {
 
   .post {
     display: grid;
-    grid-column-gap: 2em;
+    grid-column-gap: 1em;
     grid-auto-columns: fit-content(100%) fit-content(100%);
     font-family: $font-content;
     font-size: 0.75rem;
@@ -23,6 +23,7 @@ main {
 
     time {
       grid-column: 1 / span 1;
+      align-self: start;
       user-select: none;
     }
 
