@@ -16,7 +16,7 @@
   grid-row-gap: 3rem;
 
   @include mobile {
-    padding: 5vh 7.5vw 2vh 7.5vw;
+    padding: 5vh 7.5vw 4vh 7.5vw;
 
     grid-template-areas:
       "header"
