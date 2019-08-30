@@ -7,15 +7,16 @@
   article {
     font-family: $font-content;
     font-weight: 400;
-    text-align: justify;
-    color: var(--color-main);
+    text-align: justify;    
 
     h1 {
       margin-bottom: 0.5em;
+      color: var(--color-main);
     }
     
     p {
       line-height: 1.2em;
+      color: var(--color-secondary);
 
       & + p {
         margin-bottom: 0.4em;
