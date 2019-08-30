@@ -1,3 +1,15 @@
+.gdpr--show {
+  transform: translateY(-45vh);
+
+  @include tablet {
+    transform: translateY(-60vh);
+  }
+
+  @include mobile {
+    transform: translateY(-60vh);
+  }
+}
+
 #gdpr {
   $width: 75vw;
 
@@ -12,7 +24,7 @@
   position: fixed;
   width: $width;
   height: 45vh;
-  bottom: 0;
+  bottom: -45vh;
   left: calc(50% - #{$width} / 2);
   z-index: 12;
   
@@ -31,13 +43,6 @@
 }
 
 //
-.gdpr--hidden {
-  transform: translateY(45vh);
-
-  @include mobile {
-    transform: translateY(60vh)
-  }
-}
 
 .body--darkened {
   // applies to body
@@ -192,6 +197,7 @@
 
   #gdpr {
     left: 0;
+    bottom: -60vh;
     width: 100vw;
     height: auto;
     max-height: 60vh;
@@ -219,6 +225,7 @@
 
   #gdpr {
     left: 0;
+    bottom: -60vh;
     width: 100vw;
     height: auto;
     max-height: 60vh;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./gdpr.scss";
-import { all } from "q";
 
 
 const GDPR = props => {
@@ -8,16 +7,18 @@ const GDPR = props => {
   const [ hidden, setHidden ] = useState(false);
   // const [ allowed, setAllowed ] = useState(false);
 
-  const allowanceGA = event => {
-    const isBrowser = typeof window !== `undefined`;
+  const isBrowser = typeof window !== `undefined`;
 
-    setHidden(!hidden);
+  const allowanceGA = event => {
+
+    setHidden(true);
     document.body.classList.remove("body--darkened");
 
     if (isBrowser) {
       /// !! -> converting int ( 0 ; 1) into boolean, and we need here the reverse, so !!!
       const decision = !!!parseInt(event.target.value, 10);
       // disable GA
+      console.log(decision, typeof(decision));
       window['ga-disable-GA_MEASUREMENT_ID'] = decision;
       // remember the choice (here -> was it allowed or not)
       localStorage.setItem("GA-allowance", !decision);
@@ -25,16 +26,13 @@ const GDPR = props => {
   }
 
   useEffect(() => {
-    const allowance = localStorage.getItem("GA-allowance");
-    if (allowance !== undefined) {
-      if (allowance) {
-        setHidden(true);
-      }
+    if (localStorage.getItem("GA-allowance")) {
+      setHidden(true);
     }
 
-    (!hidden)
-      ? document.body.classList.add("body--darkened")
-      : document.body.classList.remove("body--darkened");
+    (hidden)
+      ? document.body.classList.remove("body--darkened")
+      : document.body.classList.add("body--darkened");
   });
 
   const header = () => (
@@ -83,7 +81,7 @@ const GDPR = props => {
   );
 
   return (
-    <div id="gdpr" className={ (hidden) ? "gdpr--hidden" : "" }>
+    <div id="gdpr" className={ (hidden) ? "" : "gdpr--show" }>
       {header()}
       {message()}
       {acceptance()}

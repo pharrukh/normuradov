@@ -11,7 +11,7 @@ const IndexPage = (props) => {
 
   // language "state" of the page
   const [ language, switchLang ] = useState("en");
-
+  
   // update the settings upon refreshing
   useLayoutEffect(
     () => {
@@ -85,9 +85,18 @@ const IndexPage = (props) => {
     </>
   );
 
+  const gdprCheck = () => {
+    const isBrowser = typeof window !== `undefined`;
+    if (isBrowser && !localStorage.getItem("GA-allowance")) {
+      return <GDPR />
+    }
+  }
+
   return (
     < >
-      <GDPR />
+      <div className="gdpr-modal">
+        {gdprCheck()}
+      </div>
       <Layout switchLang={switchLang} >
         <SEO title="Home" />
         { (posts[language]) ? renderPosts() : <NoPostsMessage /> }      
