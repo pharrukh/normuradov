@@ -35,7 +35,7 @@
   transform: translateY(45vh);
 
   @include mobile {
-    transform: translateY(50vh)
+    transform: translateY(60vh)
   }
 }
 
@@ -187,12 +187,14 @@
   }
 }
 
-@include mobile {
+
+@include tablet {
 
   #gdpr {
     left: 0;
     width: 100vw;
-    height: 50vh;
+    height: auto;
+    max-height: 60vh;
 
     grid-template-areas:
       "header"
@@ -200,10 +202,42 @@
       "form"
       "buttons";
     grid-template-columns: 1fr;
-    grid-template-rows: 1.25fr 4fr 1fr 1.5fr;
+    grid-template-rows: repeat(3, auto) 10vh;
     grid-row-gap: 0.8rem;
 
     padding-bottom: 1.5vh;
+    border-radius: 45px 45px 0 0;
+  }
+
+  .gdpr-allowence {
+    align-self: center;
+  }
+
+}
+
+@include mobile {
+
+  #gdpr {
+    left: 0;
+    width: 100vw;
+    height: auto;
+    max-height: 60vh;
+
+    grid-template-areas:
+      "header"
+      "message"
+      "form"
+      "buttons";
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto) 10vh;
+    grid-row-gap: 0.8rem;
+
+    padding-bottom: 1.5vh;
+    border-radius: 45px 45px 0 0;
+  }
+
+  .gdpr-allowence {
+    align-self: center;
   }
 
 }

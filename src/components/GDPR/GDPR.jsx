@@ -1,22 +1,40 @@
 import React, { useState, useEffect } from "react";
 import "./gdpr.scss";
+import { all } from "q";
 
 
 const GDPR = props => {
 
   const [ hidden, setHidden ] = useState(false);
+  // const [ allowed, setAllowed ] = useState(false);
 
-  const handleButton = event => {
-    // event.preventDefaut();
+  const allowanceGA = event => {
+    const isBrowser = typeof window !== `undefined`;
+
     setHidden(!hidden);
     document.body.classList.remove("body--darkened");
-    console.log(event.target.value);
+
+    if (isBrowser) {
+      /// !! -> converting int ( 0 ; 1) into boolean, and we need here the reverse, so !!!
+      const decision = !!!parseInt(event.target.value, 10);
+      // disable GA
+      window['ga-disable-GA_MEASUREMENT_ID'] = decision;
+      // remember the choice (here -> was it allowed or not)
+      localStorage.setItem("GA-allowance", !decision);
+    }
   }
 
   useEffect(() => {
-    (!hidden) 
-    ? document.body.classList.add("body--darkened")
-    : document.body.classList.remove("body--darkened");
+    const allowance = localStorage.getItem("GA-allowance");
+    if (allowance !== undefined) {
+      if (allowance) {
+        setHidden(true);
+      }
+    }
+
+    (!hidden)
+      ? document.body.classList.add("body--darkened")
+      : document.body.classList.remove("body--darkened");
   });
 
   const header = () => (
@@ -45,8 +63,8 @@ const GDPR = props => {
   const acceptance = () => (
     <div className="gdpr-allowence">
       <div className="buttons">
-        <button onClick={handleButton} value="true">Allow</button>
-        <button onClick={handleButton} value="false">Refuse</button>
+        <button onClick={allowanceGA} value={1}>Allow</button>
+        <button onClick={allowanceGA} value={0}>Refuse</button>
       </div>      
     </div>
   );
