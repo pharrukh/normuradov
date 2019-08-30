@@ -7,6 +7,8 @@ import SEO from "../components/seo";
 import GDPR from "components/GDPR/GDPR";
 import NoPostsMessage from "components/noPostsMessage/NoPostsMessage";
 
+import "styles/pages/index.scss";
+
 const IndexPage = (props) => {
 
   // language "state" of the page
