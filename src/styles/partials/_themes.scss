@@ -6,6 +6,7 @@ $themes: (
     nav-mobile-background: rgb(255, 255, 255),
     nav-color: gray,
     nav-active-color: black,
+    nav-posts-mobile-bg: lightcyan,
     // gdpr
     gdpr-background: rgb(245, 245, 245),
     // typography
@@ -17,7 +18,8 @@ $themes: (
     border-header: 3px solid rgba(19, 19, 19, 0.55),
     border-section: 1px solid rgba(0, 0, 0, 0.25),
     // icons
-    icon-fill-main: black,
+    icon-fill-main: rgb(36, 36, 36),
+    icon-fill-secondary: gray,
     // article tags
     tag-bg: lightcyan,
     color-tag: #808080,
@@ -30,6 +32,7 @@ $themes: (
     nav-mobile-background: rgb(15, 15, 15),
     nav-color: white,
     nav-active-color: #e9d66b,
+    nav-posts-mobile-bg: rgb(19, 19, 19),
     // gdpr
     gdpr-background: rgb(35, 37, 39),
     // typography
@@ -42,6 +45,7 @@ $themes: (
     border-section: 1px solid rgba(250, 250, 250, 0.25),
     // icons
     icon-fill-main: white,
+    icon-fill-secondary: gray,
     // article tags
     tag-bg: rgb(57, 59, 61),
     color-tag: #C0C0C0,
