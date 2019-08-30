@@ -95,6 +95,7 @@
       // tag styling
       span {
         $size: 1rem;
+
         font-size: 0.6 * $size;
         display: flex;
         justify-content: center;
@@ -107,8 +108,8 @@
         display: inline-block;
         height: $size;
         line-height: $size;
-        padding: 0 (0.92 * $size) 0 $size;
-        margin: 0.25em 1em 0.25em 0;
+        padding: 0 (0.45 * $size) 0 $size;
+        margin: 0.25em ($size * 0.5 + 0.5rem) 0.25em 0;
         position: relative;
         text-decoration: none;
 
@@ -124,7 +125,7 @@
           top: calc(50% - 0.12 * #{$size});
         }
 
-        &::after {
+        /* &::after {
           background: var(--arrow-bg);
           border-bottom: (0.52 * $size) solid transparent;
           border-left: (0.52 * $size) solid var(--tag-bg);
@@ -133,6 +134,18 @@
           position: absolute;
           right: 0;
           top: 0;
+        } */
+
+        &::after {
+          content: "";
+          position: absolute;
+          right: -$size * 0.5;
+          top: 0;
+          background: var(--tag-bg);
+          width: $size * 0.5;
+          height: $size;
+          clip-path: polygon(0 100%, 0 0, 100% 50%);
+          
         }
 
         /* & + span {
