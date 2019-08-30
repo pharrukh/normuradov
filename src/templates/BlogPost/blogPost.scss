@@ -9,6 +9,45 @@
     }
   }
 
+  // posts navigation
+
+  .nav-posts {
+    $icon-size: 2rem;
+
+    position: fixed;
+    top: 2.5vh;
+    right: 2.5vw;
+    height: 6rem;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    .nav-empty {
+      fill: var(--icon-fill-secondary);     
+    }
+
+    a {
+      height: $icon-size;
+      width: $icon-size;
+    }
+
+    svg {
+      height: $icon-size;
+      width: $icon-size;
+      fill: var(--icon-fill-main);
+      transition: transform 0.2s ease;
+
+      &:active {
+        transform: scale(0.75);
+      }
+    }
+  }
+
+  //
+  
+
   main {
     border-top: var(--border-section);
     padding-top: 5vh;
@@ -201,6 +240,25 @@
 
     #layout-main {
       padding-top: 7.5vh;
+      grid-row-gap: 0.75rem;
+    }    
+
+    .nav-posts {
+      position: sticky;
+      top: 0;
+      left: 0;
+
+      height: 3rem;
+      border-radius: 25px;
+      width: 45%;
+      background: var(--nav-posts-mobile-bg);
+      box-shadow:
+        0 12px 38px rgba(0,0,0,0.30),
+        0 10px 12px rgba(0,0,0,0.22);
+      flex-flow: row nowrap;
+      z-index: 5;
+
+      justify-self: center;
     }
 
     .header {

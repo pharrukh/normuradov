@@ -26,24 +26,24 @@ exports.createPages = async ({ actions, graphql }) => {
   {
     allMarkdownRemark(
       filter: {frontmatter: {type: {eq: "post"}}},
-      sort: {order: DESC, fields: [frontmatter___date]}
-      ) {
-      edges {
-        node {
-          id
-          html
-          frontmatter {
-            path
-            date
-            lang
-            title
-            keywords
-            description
-            author
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
+      group(field: frontmatter___lang, limit: 5) {
+        edges {
+          node {
+            id
+            frontmatter {
+              path
+              date(formatString: "YYYY-MM-DD")
+              lang
+              title
+              keywords
+              description
+              author
+            }
           }
         }
       }
-      totalCount
     }
   }
   `);
@@ -53,12 +53,21 @@ exports.createPages = async ({ actions, graphql }) => {
     return;
   }
 
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    createPage({
-      path: node.frontmatter.path,
-      component: postTemplate,
-      context: {},
-    })
-  })    
+  const langGroupedPosts = result.data.allMarkdownRemark.group;
+  // const posts = result.data.allMarkdownRemark.edges;
+
+  langGroupedPosts.forEach(group => {
+    const posts = group.edges;
+    posts.forEach(({ node }, index) => {
+      createPage({
+        path: node.frontmatter.path,
+        component: postTemplate,
+        context: {
+          prev: (index === 0) ? null : posts[index - 1].node.frontmatter.path,
+          next: (index === posts.length - 1) ? null : posts[index + 1].node.frontmatter.path
+        },
+      })
+    }) 
+  });     
   
 }

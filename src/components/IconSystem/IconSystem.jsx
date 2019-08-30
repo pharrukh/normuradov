@@ -88,7 +88,22 @@ const IconSystem = props => (
     <symbol id="icon-notepad" viewBox="0 0 24 24">
       <title>Notepad</title>
       <path d="M17,4V10L15,8L13,10V4H9V20H19V4H17M3,7V5H5V4C5,2.89 5.9,2 7,2H19C20.05,2 21,2.95 21,4V20C21,21.05 20.05,22 19,22H7C5.95,22 5,21.05 5,20V19H3V17H5V13H3V11H5V7H3M5,5V7H7V5H5M5,19H7V17H5V19M5,13H7V11H5V13Z"/>
-    </symbol>      
+    </symbol>
+
+    <symbol id="icon-home-round" viewBox="0 0 24 24">
+      <title>Home</title>
+      <path d="M19.07,4.93C17.22,3 14.66,1.96 12,2C9.34,1.96 6.79,3 4.94,4.93C3,6.78 1.96,9.34 2,12C1.96,14.66 3,17.21 4.93,19.06C6.78,21 9.34,22.04 12,22C14.66,22.04 17.21,21 19.06,19.07C21,17.22 22.04,14.66 22,12C22.04,9.34 21,6.78 19.07,4.93M17,12V18H13.5V13H10.5V18H7V12H5L12,5L19.5,12H17Z"/>      
+    </symbol>
+
+    <symbol id="icon-chevron-double-left" viewBox="0 0 24 24">
+      <title>Chevron-double-left</title>
+      <path d="M18.41,7.41L17,6L11,12L17,18L18.41,16.59L13.83,12L18.41,7.41M12.41,7.41L11,6L5,12L11,18L12.41,16.59L7.83,12L12.41,7.41Z"/>
+    </symbol>
+
+    <symbol id="icon-chevron-double-right" viewBox="0 0 24 24">
+      <title>Chevron-double-</title>
+      <path d="M5.59,7.41L7,6L13,12L7,18L5.59,16.59L10.17,12L5.59,7.41M11.59,7.41L13,6L19,12L13,18L11.59,16.59L16.17,12L11.59,7.41Z"/>
+    </symbol>    
 
   </svg>
 
