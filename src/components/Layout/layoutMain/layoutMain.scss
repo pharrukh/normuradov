@@ -15,18 +15,6 @@
   grid-template-rows: 10vh auto 8vh;
   grid-row-gap: 3rem;
 
-  @include mobile {
-    padding: 5vh 7.5vw 4vh 7.5vw;
-
-    grid-template-areas:
-      "header"
-      "content"
-      "footer";
-    grid-template-columns: 1fr;
-    grid-template-rows: 5vh auto 8vh;
-  }
-
-
   header {
     grid-area: header;
   }
@@ -37,6 +25,21 @@
 
   footer {
     grid-area: footer; 
+  }
+
+}
+
+@include mobile {
+
+  #layout-main {
+    padding: 5vh 5vw 4vh 5vw;
+
+    grid-template-areas:
+      "header"
+      "content"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 5vh auto 10vh;
   }
 
 }
