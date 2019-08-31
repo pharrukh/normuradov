@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 
 import "styles/pages/404.scss";
 
 import Layout from "components/Layout/layoutMain/LayoutMain";
 import SEO from "../components/seo";
+
+import pageState from "components/pageState";
 
 const Illustration = () => (
   <svg viewBox="0 0 1545.2343 537.28125" className="page-404-illustration">
@@ -15,8 +17,16 @@ const Illustration = () => (
   </svg>
 );
 
-const NotFoundPage = () => (
-  <div id="page-404">
+const NotFoundPage = () => {
+
+  const [ language, switchLang ] = useState("en");
+
+  useEffect(
+    () => pageState(switchLang)
+  );
+
+  return (
+    <div id="page-404">
     <Layout>
       <SEO title="404: Not found" />
       <h2>Nothing useful here!</h2>
@@ -25,6 +35,7 @@ const NotFoundPage = () => (
       <p>You may find what you was looking for in <Link to="/archives">archives</Link>!</p>   
     </Layout>
   </div>
-)
+  );  
+}
 
 export default NotFoundPage;

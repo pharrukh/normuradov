@@ -3,35 +3,16 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import Layout from "components/Layout/layoutMain/LayoutMain";
 
+import pageState from "components/pageState";
+
 import "styles/pages/about.scss";
 
 const About = props => {
 
-  // need during build time...
-  const isBrowser = typeof window !== `undefined`;
-
-  const [ language, switchLang ] = useState(
-    (isBrowser) ?
-      localStorage.getItem("lastChosenLang") ||
-      document.documentElement.getAttribute("lang") ||
-      "en" : "en"
-  );
+  const [ language, switchLang ] = useState("en");
 
   useEffect(
-    () => {
-      // language
-      switchLang(
-        localStorage.getItem("lastChosenLang") ||
-        document.documentElement.getAttribute("lang") ||
-        "en"
-      );
-      // theme
-      document.documentElement.setAttribute(
-        "data-theme",
-        localStorage.getItem("lastChosenTheme") || "light"
-      );
-    },
-    [language]
+    () => pageState(switchLang)
   );
 
   const { allMarkdownRemark: { edges : data } } = useStaticQuery(graphql`

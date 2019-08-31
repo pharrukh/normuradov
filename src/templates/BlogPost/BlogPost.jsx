@@ -5,26 +5,15 @@ import "./blogPost.scss";
 
 import Layout from "components/Layout/layoutMain/LayoutMain";
 
+import pageState from "components/pageState";
+
 const Template = ({ data, pageContext }) => {
 
   const {frontmatter, html} = data.markdownRemark;
   const [ language, switchLang ] = useState("en");
 
   useEffect(
-    () => {
-      // language
-      switchLang(
-        localStorage.getItem("lastChosenLang") ||
-        document.documentElement.getAttribute("lang") ||
-        "en"
-      );
-      // theme
-      document.documentElement.setAttribute(
-        "data-theme",
-        localStorage.getItem("lastChosenTheme") || "light"
-      );
-    },
-    [language]
+    () => pageState(switchLang)
   );
 
   const postsNavigation = ({ prev, next }) => (

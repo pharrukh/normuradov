@@ -6,36 +6,16 @@ import Layout from "components/Layout/layoutMain/LayoutMain";
 
 import NoPostsMessage from "components/noPostsMessage/NoPostsMessage";
 
+import pageState from "components/pageState";
+
 import "styles/pages/archives.scss";
 
 const ArchivesPage = props => {
 
-  // need during build time...
-  const isBrowser = typeof window !== `undefined`;
-
-  // language "state" of the page
-  const [ language, switchLang ] = useState(
-    (isBrowser) ?
-      localStorage.getItem("lastChosenLang") ||
-      document.documentElement.getAttribute("lang") ||
-      "en" : ""
-  );
+  const [ language, switchLang ] = useState("en");
 
   useEffect(
-    () => {
-      // language
-      switchLang(
-        localStorage.getItem("lastChosenLang") ||
-        document.documentElement.getAttribute("lang") ||
-        "en"
-      );
-      // theme
-      document.documentElement.setAttribute(
-        "data-theme",
-        localStorage.getItem("lastChosenTheme") || "light"
-      );
-    },
-    [language]
+    () => pageState(switchLang)
   );
 
   const { allMarkdownRemark: { group: queryData } } = useStaticQuery(graphql`

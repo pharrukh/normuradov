@@ -7,6 +7,8 @@ import SEO from "../components/seo";
 import GDPR from "components/GDPR/GDPR";
 import NoPostsMessage from "components/noPostsMessage/NoPostsMessage";
 
+import pageState from "components/pageState";
+
 import "styles/pages/index.scss";
 
 const IndexPage = (props) => {
@@ -16,22 +18,7 @@ const IndexPage = (props) => {
   
   // update the settings upon refreshing
   useLayoutEffect(
-    () => {
-
-      // language
-      switchLang(
-        localStorage.getItem("lastChosenLang") ||
-        document.documentElement.getAttribute("lang") ||
-        "en"
-      );
-
-      document.documentElement.setAttribute(
-        "data-theme",
-        localStorage.getItem("lastChosenTheme") || "light"
-      );
-
-    },
-    [language]
+    () => pageState(switchLang)
   );
 
   // quering the data from .md files to get posts menu
