@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
+import SEO from "components/seo";
 import Layout from "components/Layout/layoutMain/LayoutMain";
 
 import pageState from "components/pageState";
@@ -44,6 +45,7 @@ const About = props => {
 
   return (
     <div id="about-page">
+      <SEO title="About" />
       <Layout switchLang={switchLang}>
         <article
           dangerouslySetInnerHTML={{ __html: pages[language].html }}>

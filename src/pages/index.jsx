@@ -1,9 +1,8 @@
 import React, { useLayoutEffect, useState } from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 
+import SEO from "components/seo";
 import Layout from "components/Layout/layoutMain/LayoutMain";
-import SEO from "../components/seo";
-
 import GDPR from "components/GDPR/GDPR";
 import NoPostsMessage from "components/noPostsMessage/NoPostsMessage";
 

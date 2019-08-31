@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 
-import SEO from "../components/seo";
+import SEO from "components/seo";
 import Layout from "components/Layout/layoutMain/LayoutMain";
-
 import NoPostsMessage from "components/noPostsMessage/NoPostsMessage";
 
 import pageState from "components/pageState";

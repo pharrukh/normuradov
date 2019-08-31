@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, graphql } from "gatsby";
 
-import "./blogPost.scss";
-
+import SEO from "components/seo";
 import Layout from "components/Layout/layoutMain/LayoutMain";
 
 import pageState from "components/pageState";
+
+import "./blogPost.scss";
 
 const Template = ({ data, pageContext }) => {
 
@@ -57,6 +58,7 @@ const Template = ({ data, pageContext }) => {
         {postsNavigation(pageContext)}
               
         <div className="header">
+          <SEO title={frontmatter.title} />
           <time dateTime={frontmatter.date}>{frontmatter.date}</time>
           <h1>{frontmatter.title}</h1>
           <h2>{frontmatter.author}</h2>
