@@ -58,11 +58,15 @@ author: "Farrukh Normuradov"
 ---
 ```
 
-## Algorithm of publishing a new post
+## Publishing a new post
 
-1. Add a new .md file to the posts folder.
-2. Run command to build and deploy the website:
-   
+1. Clone the project:
+   ```
+   git clone https://github.com/EricRovell/normuradov.git
+   ```
+2. Or update the local branch from remote.
+3. Add new markdown files to the **src/posts/** directory. Images should be included to the **src/posts/images** and links to them should be relative.
+4. Run deployment npm script, it will build the project and deploy it to the github-pages via gh-pages branch.
    ```
    npm run deploy
    ```
