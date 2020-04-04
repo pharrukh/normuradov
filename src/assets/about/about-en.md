@@ -6,15 +6,17 @@ title: "About"
 
 #About
 
-My name is Farrukh Normuradov.
+Mein Name ist Farrukh Normuradov.
 
-I am a father and a husband.
+Ich bin Vater und Ehemann.
 
-I am a software developer.
-I write mostly in JavaScript, but also in C#.
+Ich bin ein Software-Entwickler.
+Ich schreibe hauptsächlich in JavaScript, aber auch in C#.
 
-I am value focused.
+Ich bin wertorientiert.
 
-I graduated with honors in 2015 with a Bachelor of Science in Business Information Systems degree of Westminster International University in Tashkent.
+Ich schloss mein Studium der Wirtschaftsinformatik an der Westminster International University in Taschkent im Jahr 2015 mit Auszeichnung ab und erwarb den Bachelor of Science in Business Information Systems.
 
-I use citing style of my alma mater: [Westminster Harvard](https://www.westminster.ac.uk/library-and-it/support-and-study-skills/guides-and-tutorials/referencing-your-work).
+Ich verwende den Zitierstil meiner Alma Mater: [Westminster Harvard](https://www.westminster.ac.uk/library-and-it/support-and-study-skills/guides-and-tutorials/referencing-your-work).
+
+Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
