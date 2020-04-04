@@ -21,7 +21,7 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: AzureFileCopy@4
+- task: AzureFileCopy@2
   inputs:
     SourcePath: 'Upload files to blob container'
     azureSubscription: 'Pay-As-You-Go (ef7fec7f-59c8-46f3-8fd6-b66cbd0a1205)'
