@@ -16,5 +16,5 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-    az storage blob upload-batch — account-name $(STORAGE_ACCOUNT_NAME) account-key $(STORAGE_ACCOUNT_KEY) — destination ‘$web’ — source ./public
+    az storage blob upload-batch —-account-name $(STORAGE_ACCOUNT_NAME) --account-key $(STORAGE_ACCOUNT_KEY) —-destination ‘$web’ —-source ./public
   displayName: 'Put files to Storage Blob Container'
