@@ -8,25 +8,9 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-- task: CacheBeta@1
-  inputs:
-    key: 'npm | "$(Agent.OS)" | package-lock.json'
-    path: '$(npm_config_cache)'
-    restoreKeys: 'npm | "$(Agent.OS)"'
-
-- script: npm ci
 
 - script: |
-    npm run build
-  displayName: 'npm install and build'
-
-- script: |
-    az storage blob upload-batch --account-name $(AZURE_STORAGE_ACCOUNT) --account-key $(AZURE_STORAGE_KEY) -s ./public/. -d '$(DESTINATION)'
+    az storage blob upload-batch --account-name $(AZURE_STORAGE_ACCOUNT) --account-key $(AZURE_STORAGE_KEY) -s ./CNAME -d '$(DESTINATION)'
   displayName: 'Put files to Storage Blob Container'
 
 
