@@ -15,14 +15,6 @@ steps:
     npm run azure-build
   displayName: 'npm install and build'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/public'
-
-- task: AzureFileCopy@4
-  inputs:
-    SourcePath: '$(System.DefaultWorkingDirectory)/public'
-    azureSubscription: 'Pay-As-You-Go (ef7fec7f-59c8-46f3-8fd6-b66cbd0a1205)'
-    Destination: 'AzureBlob'
-    storage: 'normuradov'
-    ContainerName: '$web'
+- script: |
+    az storage blob upload-batch — account-name $(STORAGE_ACCOUNT_NAME) account-key $(STORAGE_ACCOUNT_KEY) — destination ‘$web’ — source ./public
+  displayName: 'Put files to Storage Blob Container'
