@@ -8,9 +8,22 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
+
+- task: CacheBeta@1
+  inputs:
+    key: 'npm | "$(Agent.OS)" | package-lock.json'
+    path: '$(npm_config_cache)'
+    restoreKeys: 'npm | "$(Agent.OS)"'
+
+- script: npm ci
+
+- script: |
+    npm run build
+  displayName: 'npm and build'
+
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Pay-As-You-Go (ef7fec7f-59c8-46f3-8fd6-b66cbd0a1205)'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: az storage blob upload-batch --account-name $(AZURE_STORAGE_ACCOUNT) --account-key $(AZURE_STORAGE_KEY) -s ./src/assets/. -d '$(DESTINATION)'
+    inlineScript: az storage blob upload-batch --account-name $(AZURE_STORAGE_ACCOUNT) --account-key $(AZURE_STORAGE_KEY) -s ./public/. -d '$(DESTINATION)'
