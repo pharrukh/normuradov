@@ -19,7 +19,7 @@ steps:
 
 - script: |
     npm run build
-  displayName: 'npm and build'
+  displayName: 'build'
 
 - task: AzureCLI@2
   inputs:
