@@ -10,7 +10,7 @@ pool:
 steps:
 
 - script: |
-    az storage blob upload-batch --account-name $(AZURE_STORAGE_ACCOUNT) --account-key $(AZURE_STORAGE_KEY) -s ./CNAME -d '$(DESTINATION)'
+    az storage blob upload-batch --account-name '$(AZURE_STORAGE_ACCOUNT)' --account-key '$(AZURE_STORAGE_KEY)' -s ./public/. -d '$(DESTINATION)'
   displayName: 'Put files to Storage Blob Container'
 
 
