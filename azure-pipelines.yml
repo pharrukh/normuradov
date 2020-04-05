@@ -16,5 +16,5 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-    az storage blob upload-batch —s ./public —d '$web'
+    az storage blob upload-batch -s ./public/. -d '$(DESTINATION)'
   displayName: 'Put files to Storage Blob Container'
