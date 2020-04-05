@@ -13,5 +13,5 @@ steps:
     azureSubscription: 'Pay-As-You-Go (ef7fec7f-59c8-46f3-8fd6-b66cbd0a1205)'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: "Write-Output $1"
+    inlineScript: Write-Output $1;
     arguments: $env:AZURE_STORAGE_ACCOUNT $env:AZURE_STORAGE_KEY $env:DESTINATION
