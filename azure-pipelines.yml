@@ -13,18 +13,15 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- task: Cache@2
+- task: CacheBeta@1
   inputs:
     key: 'npm | "$(Agent.OS)" | package-lock.json'
-    restoreKeys: |
-       npm | "$(Agent.OS)"
-    path: $(npm_config_cache)
-  displayName: Cache npm
+    path: '$(npm_config_cache)'
+    restoreKeys: 'npm | "$(Agent.OS)"'
 
 - script: npm ci
 
 - script: |
-    npm install
     npm run build
   displayName: 'npm install and build'
 
