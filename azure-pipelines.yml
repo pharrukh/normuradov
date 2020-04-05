@@ -13,5 +13,5 @@ steps:
     azureSubscription: 'Pay-As-You-Go (ef7fec7f-59c8-46f3-8fd6-b66cbd0a1205)'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch --account-name $1 --account-key $2 -s ./src/assets/. -d ''$3'' --debug'
-    arguments: $(AZURE_STORAGE_ACCOUNT) $(AZURE_STORAGE_KEY) $(DESTINATION)
+    inlineScript: 'az storage blob upload-batch -s ./src/assets/. -d ''$3'' --debug'
+    arguments: $(DESTINATION)
