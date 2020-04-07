@@ -53,6 +53,7 @@ const Template = ({ data, pageContext }) => {
 
   return (
     <div id="blog-post">
+
       <Layout switchLang={switchLang}>
 
         {postsNavigation(pageContext)}

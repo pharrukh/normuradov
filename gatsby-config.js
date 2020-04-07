@@ -141,8 +141,7 @@ module.exports = {
         variationId: "YOUR_GOOGLE_OPTIMIZE_VARIATION_ID",
         // Any additional optional fields
         sampleRate: 5,
-        siteSpeedSampleRate: 10,
-        cookieDomain: "example.com",
+        siteSpeedSampleRate: 10
       },
     }
     

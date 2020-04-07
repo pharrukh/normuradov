@@ -15,9 +15,8 @@ const pageState = (switchLang = null) => {
   );
 
   // GA
-  const permission = localStorage.getItem("GA-allowance")
-  if (permission === "false") {
-    window['ga-disable-GA_MEASUREMENT_ID'] = true;
+  if (localStorage.getItem("GA-allowance") === "allow") {
+    window['ga-disable-GA_MEASUREMENT_ID'] = false;
   }
 }
 

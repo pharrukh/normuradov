@@ -75,7 +75,7 @@ const IndexPage = (props) => {
 
   const gdprCheck = () => {
     const isBrowser = typeof window !== `undefined`;
-    if (isBrowser && !localStorage.getItem("GA-allowance")) {
+    if (isBrowser && localStorage.getItem("GA-allowance") !== 'allow') {
       return <GDPR />
     }
   }

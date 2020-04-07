@@ -11,24 +11,22 @@ const GDPR = props => {
 
   const allowanceGA = event => {
 
-    setHidden(true);
     document.body.classList.remove("body--darkened");
 
+    setHidden(true);
     if (isBrowser) {
-      /// !! -> converting int ( 0 ; 1) into boolean, and we need here the reverse, so !!!
-      const decision = !!!parseInt(event.target.value, 10);
+      const userDesitionForGoogleAnalytics = event.target.value;
       // disable GA
-      console.log(decision, typeof(decision));
-      window['ga-disable-GA_MEASUREMENT_ID'] = decision;
+      window['ga-disable-GA_MEASUREMENT_ID'] = userDesitionForGoogleAnalytics !== "allow";
       // remember the choice (here -> was it allowed or not)
-      localStorage.setItem("GA-allowance", !decision);
+      localStorage.setItem("GA-allowance", userDesitionForGoogleAnalytics);
     }
   }
 
   useEffect(() => {
-    if (localStorage.getItem("GA-allowance")) {
-      setHidden(true);
-    }
+    // if (localStorage.getItem("GA-allowance") === true) {
+    //   setHidden(true);
+    // }
 
     (hidden)
       ? document.body.classList.remove("body--darkened")
@@ -61,22 +59,9 @@ const GDPR = props => {
   const acceptance = () => (
     <div className="gdpr-allowence">
       <div className="buttons">
-        <button onClick={allowanceGA} value={1}>Allow</button>
-        <button onClick={allowanceGA} value={0}>Refuse</button>
+        <button onClick={allowanceGA} value={'allow'}>Allow</button>
+        <button onClick={allowanceGA} value={'disallow'}>Refuse</button>
       </div>      
-    </div>
-  );
-
-  const form = () => (
-    <div className="gdpr-form">
-      <fieldset>
-        <legend>Change your cookie settings:</legend>
-        <form>
-          <input id="gdpr-mail" type="checkbox"></input>
-          <label htmlFor="gdpr-mail"></label>
-          <p>email</p>          
-        </form>
-      </fieldset>
     </div>
   );
 
@@ -85,7 +70,6 @@ const GDPR = props => {
       {header()}
       {message()}
       {acceptance()}
-      {form()}
     </div>
   );
 };
