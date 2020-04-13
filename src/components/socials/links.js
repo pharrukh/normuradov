@@ -20,15 +20,15 @@ export const links = [
   },
 
   {
-    name: "Telegram",
-    link: "https://t.me/UzFeedbackBot",
-    icon: "icon-telegram",
-  },
-
-  {
     name: "GitHub",
     link: "https://github.com/pharrukh",
     icon: "icon-github",
+  },
+
+  {
+    name: "Subscribe",
+    link: "https://mailchi.mp/9ff7b05941c1/normuradov",
+    icon: "icon-newspaper",
   },
 
 ];
