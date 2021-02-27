@@ -125,7 +125,7 @@ module.exports = {
 
     {
       resolve: 'gatsby-plugin-exclude',
-      options: { paths: ['/product/book-shelves/**'] },
+      options: { paths: ['/product/book-shelves/**','/product/would-you-rather/**'] },
     }
   ],
 }
