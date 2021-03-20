@@ -24,13 +24,11 @@
   }
 
   footer {
-    grid-area: footer; 
+    grid-area: footer;
   }
-
 }
 
 @include mobile {
-
   #layout-main {
     padding: 5vh 5vw 4vh 5vw;
 
@@ -41,5 +39,4 @@
     grid-template-columns: 1fr;
     grid-template-rows: 5vh auto 10vh;
   }
-
 }

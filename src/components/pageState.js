@@ -6,7 +6,7 @@ const pageState = (switchLang = null) => {
       document.documentElement.getAttribute("lang") ||
       "en"
     );
-  }  
+  }
 
   // theme
   document.documentElement.setAttribute(

@@ -20,21 +20,21 @@
   grid-template-columns: 5fr 3fr;
   grid-template-rows: 2fr 4fr;
   grid-gap: 0.25em 1.5em;
-  
+
   position: fixed;
   width: $width;
   height: 45vh;
   bottom: -45vh;
   left: calc(50% - #{$width} / 2);
   z-index: 12;
-  
+
   background: var(--gdpr-background);
   font-family: $font-header;
   color: var(--color-main);
   border-radius: 75px 75px 0 0;
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   padding: 2rem 2rem;
-  
+
   transition: transform 0.5s ease-in-out;
 
   a {
@@ -42,12 +42,10 @@
   }
 }
 
-//
-
 .body--darkened {
   // applies to body
   position: relative;
-  
+
   &::before {
     content: "";
     z-index: 11;
@@ -57,7 +55,6 @@
     background: rgba(0, 0, 0, 0.75);
   }
 }
-
 
 .gdpr-header {
   grid-area: header;
@@ -96,9 +93,9 @@
     align-items: center;
     border-radius: 15px;
     background: transparent;
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 9px 12px rgba(0,0,0,0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 9px 12px rgba(0, 0, 0, 0.22);
   }
-  
+
   button:nth-of-type(1),
   button:nth-of-type(2) {
     height: 100%;
@@ -119,7 +116,6 @@
     border-radius: 0 10px 10px 0;
     background: rgb(108, 108, 108);
   }
-
 }
 
 .gdpr-form {
@@ -150,7 +146,7 @@
     padding: 0.5em;
     width: 100%;
 
-    P {
+    p {
       font-size: 0.75rem;
       margin-left: 0.5em;
     }
@@ -167,7 +163,7 @@
   }
 
   label:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 5%;
     left: 5%;
@@ -179,22 +175,20 @@
   }
 
   input:checked + label {
-    background: #4DB6AC;
+    background: #4db6ac;
   }
-  
+
   input:checked + label::after {
     left: calc(100% - 5%);
     transform: translateX(-100%);
   }
-  
+
   label:active::after {
     width: $toggle-size * 0.7;
   }
 }
 
-
 @include tablet {
-
   #gdpr {
     left: 0;
     bottom: -60vh;
@@ -218,11 +212,9 @@
   .gdpr-allowence {
     align-self: center;
   }
-
 }
 
 @include mobile {
-
   #gdpr {
     left: 0;
     bottom: -60vh;
@@ -246,5 +238,4 @@
   .gdpr-allowence {
     align-self: center;
   }
-
 }

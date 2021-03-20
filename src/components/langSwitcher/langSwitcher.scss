@@ -21,7 +21,6 @@
     background: var(--background-main);
   }
 
-
   select {
     background: transparent;
     color: var(--color-main);
@@ -35,16 +34,13 @@
       outline: none;
     }
   }
-
 }
 
 @include mobile {
-
   #lang-switcher {
     option,
     select {
       font-size: 0.75rem;
     }
   }
-
 }

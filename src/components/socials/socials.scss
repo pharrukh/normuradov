@@ -25,14 +25,12 @@
       height: $icon-size;
     }
   }
-
 }
 
 @include mobile {
   $icon-size: 1.4rem;
-  
-  .socials {
 
+  .socials {
     a {
       width: $icon-size;
       height: $icon-size;
@@ -42,7 +40,5 @@
         height: $icon-size;
       }
     }
-    
   }
-
 }

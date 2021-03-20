@@ -1,13 +1,11 @@
-// ! component uses IconSystem, do not forget to include
+import React from "react"
+import "./socials.scss"
 
-import React from "react";
-import "./socials.scss";
-
-import { links } from "./links";
+import { links } from "./links"
 
 const Socials = () => (
   <div className="socials">
-    {links.map( (link, i) => (
+    {links.map((link, i) => (
       <a href={link.link} key={i}>
         <svg className="icon">
           <use href={`#${link.icon}`} />
@@ -15,6 +13,6 @@ const Socials = () => (
       </a>
     ))}
   </div>
-);
+)
 
-export default Socials;
+export default Socials

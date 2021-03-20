@@ -1,26 +1,20 @@
-import React from "react";
+import React from "react"
 
-import "./langSwitcher.scss";
+import "./langSwitcher.scss"
 
-const LangSwitcher = (props) => {
+const LangSwitcher = props => {
+  const languages = ["en", "de", "ru", "uz"]
 
-  const languages = [
-    "en", "de", "ru", "uz"
-  ];
-  
   // need during build time...
   const isBrowser = typeof window !== `undefined`
 
   const handleChange = event => {
-    event.preventDefault();
-    //
-    const root = document.documentElement;
-    const option = event.target.value;
-    //    
-    root.setAttribute("lang", option);
-    // 
-    if (isBrowser) localStorage.setItem("lastChosenLang", option);
-    props.switchLang(option);
+    event.preventDefault()
+    const root = document.documentElement
+    const option = event.target.value
+    root.setAttribute("lang", option)
+    if (isBrowser) localStorage.setItem("lastChosenLang", option)
+    props.switchLang(option)
   }
 
   return (
@@ -28,22 +22,23 @@ const LangSwitcher = (props) => {
       <label htmlFor="lang-switcher-form">Language:</label>
       <select
         if="lang-switcher-form"
-        onChange={ handleChange }
+        onChange={handleChange}
         defaultValue={
-          (isBrowser) ?
-            localStorage.getItem("lastChosenLang") ||
-            document.documentElement.getAttribute("lang") ||
-            "en" : "en"
+          isBrowser
+            ? localStorage.getItem("lastChosenLang") ||
+              document.documentElement.getAttribute("lang") ||
+              "en"
+            : "en"
         }
       >
-        {languages.map( (option, i) => (
+        {languages.map((option, i) => (
           <option key={i} value={option}>
             {option}
           </option>
         ))}
       </select>
     </div>
-  );  
-};
+  )
+}
 
-export default LangSwitcher;
+export default LangSwitcher
