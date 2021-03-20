@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
-
 import SEO from "components/seo"
 import Layout from "components/Layout/layoutMain/LayoutMain"
-
 import pageState from "components/pageState"
-
 import "./blogPost.scss"
 
 const Template = ({ data, pageContext }) => {

@@ -5,7 +5,7 @@ import "./footer.scss"
 import Socials from "components/socials/Socials"
 import LangSwitcher from "components/langSwitcher/LangSwitcher"
 
-const Footer = props => (
+const Footer = ({ switchLang }) => (
   <footer>
     <Socials />
     <div className="copyright">
@@ -13,7 +13,7 @@ const Footer = props => (
       <span>Farrukh Normuradov</span>
     </div>
     <div className="language">
-      <LangSwitcher switchLang={props.switchLang} />
+      <LangSwitcher switchLang={switchLang} />
     </div>
   </footer>
 )

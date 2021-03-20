@@ -20,7 +20,7 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 // creting pages from .md files
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
-  const postTemplate = path.resolve("src/templates/BlogPost/BlogPost.jsx");
+  const postTemplate = path.resolve("src/templates/BlogPost/BlogPost.js");
 
   const result = await graphql(`
   {
