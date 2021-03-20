@@ -68,9 +68,9 @@ const Header = ({ siteTitle }) => {
 
   const links = data => (
     <nav>
-      {data.map((link, i) => (
-        <Link to={link.path} activeClassName="nav-active" key={i}>
-          {link.name}
+      {data.map(({ path, name }, i) => (
+        <Link to={path} activeClassName="nav-active" key={i}>
+          {name}
         </Link>
       ))}
     </nav>

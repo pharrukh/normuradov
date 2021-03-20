@@ -8,7 +8,7 @@ import pageState from "components/pageState"
 
 import "styles/pages/about.scss"
 
-const About = props => {
+const About = () => {
   const [language, switchLang] = useState("en")
 
   useEffect(() => pageState(switchLang))
