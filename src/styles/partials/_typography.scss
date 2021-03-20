@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,600&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Proza+Libre&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway+Dots");
 
-$font-header: "Montserrat", sans-serif;
-$font-content: "Share Tech Mono", 'Source Code Pro', monospace;
+$font-header: "Cormorant Garamond", serif;
+$font-content: "Proza Libre", sans-serif;
+$font-dotted: "Raleway Dots";
 
 :root {
   font-size: calc(10px + 1vmax);

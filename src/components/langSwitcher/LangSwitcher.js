@@ -19,15 +19,15 @@ const LangSwitcher = props => {
 
   return (
     <div id="lang-switcher">
-      <label htmlFor="lang-switcher-form">Language:</label>
+      <label htmlFor="lang-switcher-form">lang.:</label>
       <select
         if="lang-switcher-form"
         onChange={handleChange}
         defaultValue={
           isBrowser
             ? localStorage.getItem("lastChosenLang") ||
-              document.documentElement.getAttribute("lang") ||
-              "en"
+            document.documentElement.getAttribute("lang") ||
+            "en"
             : "en"
         }
       >

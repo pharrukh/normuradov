@@ -12,6 +12,7 @@ main {
     font-size: 0.75rem;
     color: var(--color-main);
 
+
     @include tablet {
       font-size: 1.25rem;
     }
@@ -25,13 +26,15 @@ main {
       align-self: start;
       user-select: none;
       align-self: start;
+      font-family: $font-dotted;
+      font-size: 1em;
     }
 
     a {
       grid-column: 2 / span 1;
       align-self: start;
       color: var(--color-link);
-      
+
       &:hover {
         filter: var(--color-link-hover);
       }

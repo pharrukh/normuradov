@@ -41,32 +41,31 @@ const Header = ({ siteTitle }) => {
   // header links data
   const linksData = [
     {
-      name: "Home",
+      name: "home",
       path: "/",
     },
     {
-      name: "Archives",
+      name: "archives",
       path: "/archives",
     },
     {
-      name: "About",
+      name: "about",
       path: "/about",
     },
   ]
 
-  const logo = () => (
+  const logo =
     <svg className="logo" onClick={changeTheme}>
       <use href="#icon-logo" />
     </svg>
-  )
 
-  const title = () => (
-    <h1>
-      <Link to="/">{siteTitle}</Link>
-    </h1>
-  )
 
-  const links = data => (
+  const title = <h1>
+    <Link to="/">{siteTitle}</Link>
+  </h1>
+
+
+  const links = data =>
     <nav>
       {data.map(({ path, name }, i) => (
         <Link to={path} activeClassName="nav-active" key={i}>
@@ -74,12 +73,12 @@ const Header = ({ siteTitle }) => {
         </Link>
       ))}
     </nav>
-  )
+
 
   return (
     <header className={hidden ? "header-mobile--hidden" : ""}>
-      {logo()}
-      {title()}
+      {logo}
+      {title}
       {links(linksData)}
     </header>
   )

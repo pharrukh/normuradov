@@ -10,7 +10,7 @@ import UpButton from "components/Layout/upButton/UpButton"
 
 import "./layoutMain.scss"
 
-const Layout = props => {
+const Layout = ({ children, switchLang }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -25,8 +25,8 @@ const Layout = props => {
     <div id="layout-main">
       <IconSystem />
       <Header siteTitle={data.site.siteMetadata.title} />
-      <main>{props.children}</main>
-      <Footer switchLang={props.switchLang} />
+      <main>{children}</main>
+      <Footer switchLang={switchLang} />
       <UpButton />
     </div>
   )

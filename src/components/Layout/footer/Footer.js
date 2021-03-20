@@ -9,8 +9,8 @@ const Footer = ({ switchLang }) => (
   <footer>
     <Socials />
     <div className="copyright">
-      <span>Copyright © {new Date().getFullYear()}, </span>
-      <span>Farrukh Normuradov</span>
+      <span>copyright © {new Date().getFullYear()}, </span>
+      <span>farrukh normuradov</span>
     </div>
     <div className="language">
       <LangSwitcher switchLang={switchLang} />

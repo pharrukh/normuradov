@@ -1,15 +1,10 @@
 import React from "react"
 import "./noPostsMessage.scss"
-
-const noPostsMessage = () => {
+import { translations } from '../../constants/translation'
+const noPostsMessage = ({ language }) => {
   return (
     <div id="no-posts-message">
-      <p>I don't have posts in this language yet.</p>
-      <svg>
-        <use href="#icon-notepad" />
-      </svg>
-      <p>Work in progress!</p>
-      <p>Come back later!</p>
+      <p>{translations[language]['no-posts']}</p>
     </div>
   )
 }

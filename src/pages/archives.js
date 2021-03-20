@@ -77,7 +77,7 @@ const ArchivesPage = props => {
   return (
     <Layout switchLang={switchLang}>
       <SEO title="Archives" />
-      {postsData[language] ? posts(postsData) : <NoPostsMessage />}
+      {postsData[language] ? posts(postsData) : <NoPostsMessage language={language} />}
     </Layout>
   )
 }

@@ -65,7 +65,7 @@ const IndexPage = props => {
       {posts[language].map((post, i) => (
         <div className="post" key={i}>
           <time dateTime={post.date}>{post.date}</time>
-          <Link to={post.path}>{post.title}</Link>
+          <Link to={post.path} className="title">{post.title}</Link>
         </div>
       ))}
     </>
@@ -83,7 +83,7 @@ const IndexPage = props => {
       <div className="gdpr-modal">{gdprCheck()}</div>
       <Layout switchLang={switchLang}>
         <SEO title="Home" />
-        {posts[language] ? renderPosts() : <NoPostsMessage />}
+        {posts[language] ? renderPosts() : <NoPostsMessage language={language} />}
       </Layout>
     </>
   )
