@@ -47,19 +47,7 @@ const Template = ({ data, pageContext }) => {
     <div id="blog-post">
       <Layout switchLang={switchLang}>
         {postsNavigation(pageContext)}
-
-        <div className="header">
-          <SEO title={frontmatter.title} />
-          <time dateTime={frontmatter.date}>{frontmatter.date}</time>
-          <h1>{frontmatter.title}</h1>
-          <h2>{frontmatter.author}</h2>
-          <div className="keywords">
-            {frontmatter.keywords.split(" ").map((keyword, i) => (
-              <span key={i}>{keyword}</span>
-            ))}
-          </div>
-        </div>
-
+        <SEO title={frontmatter.title} />
         <article dangerouslySetInnerHTML={{ __html: html }} />
       </Layout>
     </div>

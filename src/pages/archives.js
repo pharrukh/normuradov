@@ -67,8 +67,8 @@ const ArchivesPage = props => {
     <>
       {postsData[language].map(post => (
         <div className="post" key={post.id}>
-          <time dateTime={post.date}>{post.date}</time>
-          <Link to={post.path}>{post.title}</Link>
+          <time dateTime={post.date} >{post.date}</time>
+          <Link to={post.path} className='title'>{post.title}</Link>
         </div>
       ))}
     </>

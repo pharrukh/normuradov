@@ -12,6 +12,9 @@ main {
     font-size: 0.75rem;
     color: var(--color-main);
 
+    .title {
+      text-decoration: none;
+    }
 
     @include tablet {
       font-size: 1.25rem;

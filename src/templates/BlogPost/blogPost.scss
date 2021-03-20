@@ -1,5 +1,4 @@
 #blog-post {
-
   #layout-main {
     padding-top: 5vh;
     grid-row-gap: 5vh;
@@ -25,7 +24,7 @@
     align-items: center;
 
     .nav-empty {
-      fill: var(--icon-fill-secondary);     
+      fill: var(--icon-fill-secondary);
     }
 
     a {
@@ -46,11 +45,11 @@
   }
 
   //
-  
 
   main {
     border-top: var(--border-section);
     padding-top: 5vh;
+    
   }
 
   // blog-title
@@ -67,7 +66,7 @@
       font-size: 0.65rem;
       color: var(--color-secondary);
     }
-  
+
     h1 {
       font-family: $font-header;
       font-size: 1.65rem;
@@ -78,11 +77,10 @@
     h2 {
       font-family: $font-header;
       font-size: 0.7rem;
-      font-weight: 400;
       color: var(--color-secondary);
       align-self: center;
     }
-  
+
     .keywords {
       display: flex;
       flex-flow: row wrap;
@@ -90,7 +88,7 @@
       align-items: center;
       font-family: $font-content;
       user-select: none;
-      
+
       // tag styling
       span {
         $size: 1.05rem;
@@ -116,7 +114,7 @@
           background: var(--background-main);
           border-radius: 15px;
           box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
-          content: '';
+          content: "";
           left: 0.4 * $size;
           position: absolute;
           width: 0.24 * $size;
@@ -144,17 +142,13 @@
           width: $size * 0.5;
           height: $size;
           clip-path: polygon(0 100%, 0 0, 100% 50%);
-          
         }
 
         /* & + span {
           margin-left: 0.4em;
         } */
-  
       }
-  
     }
-  
   }
 
   // code blocks
@@ -173,18 +167,18 @@
     }
 
     &::-webkit-scrollbar-track {
-      background: #f1f1f1; 
+      background: #f1f1f1;
     }
-    
+
     &::-webkit-scrollbar-thumb {
-      background: #888; 
+      background: #888;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background: #555; 
+      background: #555;
     }
   }
-  
+
   // article text
   article {
     display: grid;
@@ -197,7 +191,7 @@
     font-family: $font-content;
     font-size: 0.75rem;
     text-align: justify;
-    color: var(--color-main);  
+    color: var(--color-main);
 
     p {
       line-height: 1.2em;
@@ -214,11 +208,12 @@
 
     blockquote {
       text-indent: 1em;
-      text-align: justify;
+      text-align: center;
       font-style: italic;
       position: relative;
       padding: 1em 1em 1em 1.4em;
-      background: var(--blockquote-bg);
+      // background: var(--blockquote-bg);
+      font-size: 0.5rem;
 
       &::before {
         content: "";
@@ -239,6 +234,34 @@
       }
     }
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: $font-header;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    h4 {
+      font-size: 0.9rem;
+    }
+
+    h5 {
+      font-size: 0.8rem;
+    }
+
     img {
       border-radius: 10px;
     }
@@ -247,7 +270,7 @@
       color: var(--color-main);
       font-weight: 600;
       font-size: 0.9rem;
-      
+
       &:not(:first-child) {
         margin-top: 0.75em;
       }
@@ -262,20 +285,15 @@
     a {
       color: var(--color-link);
     }
-
-    
   }
-
 }
 
 @include mobile {
-
   #blog-post {
-
     #layout-main {
       padding-top: 7.5vh;
       grid-row-gap: 0.75rem;
-    }    
+    }
 
     .nav-posts {
       position: sticky;
@@ -286,9 +304,8 @@
       border-radius: 25px;
       width: 45%;
       background: var(--nav-posts-mobile-bg);
-      box-shadow:
-        0 12px 38px rgba(0,0,0,0.30),
-        0 10px 12px rgba(0,0,0,0.22);
+      box-shadow: 0 12px 38px rgba(0, 0, 0, 0.3),
+        0 10px 12px rgba(0, 0, 0, 0.22);
       flex-flow: row nowrap;
       z-index: 5;
 
@@ -296,7 +313,6 @@
     }
 
     .header {
-
       h1 {
         font-size: 1.6rem;
       }
@@ -304,7 +320,6 @@
       h2 {
         font-size: 0.9rem;
       }
-
     }
 
     main {
@@ -325,7 +340,5 @@
         }
       }
     }
-
   }
-
 }
