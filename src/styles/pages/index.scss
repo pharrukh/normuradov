@@ -5,6 +5,8 @@ main {
   grid-row-gap: 1rem;
 
   .post {
+    padding-left: 1rem;
+
     display: grid;
     grid-column-gap: 1em;
     grid-auto-columns: fit-content(100%) fit-content(100%);

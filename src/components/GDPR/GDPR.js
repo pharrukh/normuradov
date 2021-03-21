@@ -62,10 +62,10 @@ const GDPR = props => {
     <div className="gdpr-allowence">
       <div className="buttons">
         <button onClick={allowanceGA} value={"allow"}>
-          Allow
+          allow
         </button>
         <button onClick={allowanceGA} value={"disallow"}>
-          Refuse
+          refuse
         </button>
       </div>
     </div>

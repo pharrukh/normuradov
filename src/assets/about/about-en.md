@@ -4,7 +4,7 @@ lang: "en"
 title: "About"
 ---
 
-#About
+#about
 
 My name is Farrukh Normuradov.
 

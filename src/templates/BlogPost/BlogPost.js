@@ -46,7 +46,6 @@ const Template = ({ data, pageContext }) => {
   return (
     <div id="blog-post">
       <Layout switchLang={switchLang}>
-        {postsNavigation(pageContext)}
         <SEO title={frontmatter.title} />
         <article dangerouslySetInnerHTML={{ __html: html }} />
       </Layout>

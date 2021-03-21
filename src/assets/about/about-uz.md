@@ -4,7 +4,7 @@ lang: "uz"
 title: "Men haqimda"
 ---
 
-#Men haqimda
+#men haqimda
 
 Mening ismim Farrux Normuradov.
 

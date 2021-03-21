@@ -29,6 +29,8 @@ footer {
 
 @include mobile {
   footer {
+    padding: 0.5rem;
+
     .copyright {
       display: flex;
       flex-flow: column;

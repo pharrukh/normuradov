@@ -6,21 +6,9 @@ import PropTypes from "prop-types"
 
 import "./header.scss"
 
-import { useScrollPosition } from "components/Layout/upButton/scroll.js"
-
 const Header = ({ siteTitle }) => {
   const [hidden, setHidden] = useState(false)
 
-  // hiding mobile header
-  useScrollPosition(
-    ({ prevPos, currPos }) => {
-      const isShow = currPos.y < prevPos.y
-      if (isShow !== hidden) {
-        setHidden(isShow)
-      }
-    },
-    [hidden]
-  )
 
   // changing theme: light <-> dark
   const changeTheme = event => {

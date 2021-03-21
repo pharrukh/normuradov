@@ -22,7 +22,7 @@ $up-button-size: 5vw;
   @include mobile {
     width: $up-button-size * 2.75;
     height: $up-button-size * 2.75;
-    bottom: $up-button-offset * 8;
+    bottom: $up-button-offset * 4;
     right: $up-button-offset * 3;
   }
 }
