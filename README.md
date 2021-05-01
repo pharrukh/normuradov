@@ -32,6 +32,7 @@ To change the folder for posts-markdown files and media files contained in them,
 }
 ```
 
+
 ## Frontmatter
 
 Markdown file's frontmatter is obligatory in order to be grouped and parsed correctly. What should be included is (in any order):
