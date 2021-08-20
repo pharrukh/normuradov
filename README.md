@@ -1,6 +1,10 @@
 [![Build Status](https://dev.azure.com/normuradov0143/normuradov/_apis/build/status/pharrukh.normuradov?branchName=master)](https://dev.azure.com/normuradov0143/normuradov/_build/latest?definitionId=2&branchName=master)
 
-# Blog, powered by GatbyJS
+# normuradov
+
+## setup
+
+node v10.24.0
 
 ## Folders
 

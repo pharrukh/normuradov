@@ -20,7 +20,8 @@
     "gatsby-source-filesystem": "^2.10.0",
     "gatsby-transformer-remark": "^2.15.0",
     "gatsby-transformer-sharp": "^2.11.0",
-    "node-sass": "^4.14.1",
+    "imagemin-pngquant": "^5.0.1",
+    "pngquant-bin": "^3.1.1",
     "prismjs": "^1.24.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "gh-pages": "^2.2.0",
+    "node-sass": "^4.14.1",
     "prettier": "^1.19.1"
   },
   "license": "MIT",
