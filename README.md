@@ -36,7 +36,6 @@ To change the folder for posts-markdown files and media files contained in them,
 }
 ```
 
-
 ## Frontmatter
 
 Markdown file's frontmatter is obligatory in order to be grouped and parsed correctly. What should be included is (in any order):
@@ -46,9 +45,9 @@ Markdown file's frontmatter is obligatory in order to be grouped and parsed corr
 - date - date the post was created / published;
 - lang - language the posts was written in;
 - keywords - should be written in one string separated by space;
-- title (*self-explanatory*);
-- description (*self-explanatory*);
-- author (*self-explanatory*);
+- title (_self-explanatory_);
+- description (_self-explanatory_);
+- author (_self-explanatory_);
 
 Example:
 
@@ -77,3 +76,9 @@ author: "Farrukh Normuradov"
    ```
    npm run deploy
    ```
+
+## TODOs
+
+- remove `for a while` language switching
+- learn how to use mailchimp efficiently
+- learn if it is possible to fetch data from google analytics
