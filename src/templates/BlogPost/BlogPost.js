@@ -15,43 +15,14 @@ const Template = ({ data, pageContext }) => {
 
   const gdprCheck = () => {
     const isBrowser = typeof window !== `undefined`
-    const isGAEnabled = getCookieValue(document, 'user-decided')
-    if (isBrowser && !isGAEnabled) {
-      return <GDPR />
+    if (isBrowser) {
+      const isGAEnabled = getCookieValue(document, 'user-decided')
+      if (!isGAEnabled) {
+        return <GDPR />
+      }
     }
-  }
 
-  const postsNavigation = ({ prev, next }) => (
-    <div className="nav-posts">
-      {prev ? (
-        <Link to={prev}>
-          <svg>
-            <use href="#icon-chevron-double-left" />
-          </svg>
-        </Link>
-      ) : (
-        <svg className="nav-empty">
-          <use href="#icon-chevron-double-left" />
-        </svg>
-      )}
-      <Link to="/">
-        <svg>
-          <use href="#icon-home-round" />
-        </svg>
-      </Link>
-      {next ? (
-        <Link to={next}>
-          <svg>
-            <use href="#icon-chevron-double-right" />
-          </svg>
-        </Link>
-      ) : (
-        <svg className="nav-empty">
-          <use href="#icon-chevron-double-right" />
-        </svg>
-      )}
-    </div>
-  )
+  }
 
   return (
     <div id="blog-post">
