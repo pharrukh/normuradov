@@ -3,7 +3,7 @@ import React from "react"
 import "./langSwitcher.scss"
 
 const LangSwitcher = props => {
-  const languages = ["en", "de", "ru", "uz"]
+  const languages = ["en"]
 
   // need during build time...
   const isBrowser = typeof window !== `undefined`
