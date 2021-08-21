@@ -14,10 +14,6 @@ const pageState = (switchLang = null) => {
     localStorage.getItem("lastChosenTheme") || "light"
   );
 
-  // GA
-  if (localStorage.getItem("GA-allowance") === "allow") {
-    window['ga-disable-GA_MEASUREMENT_ID'] = false;
-  }
 }
 
 export default pageState;

@@ -4,12 +4,22 @@ import SEO from "components/seo"
 import Layout from "components/Layout/layoutMain/LayoutMain"
 import pageState from "components/pageState"
 import "./blogPost.scss"
+import GDPR from "components/GDPR/GDPR"
+import { getCookieValue } from '../../services/cookie'
 
 const Template = ({ data, pageContext }) => {
   const { frontmatter, html } = data.markdownRemark
   const [language, switchLang] = useState("en")
 
   useEffect(() => pageState(switchLang))
+
+  const gdprCheck = () => {
+    const isBrowser = typeof window !== `undefined`
+    const isGAEnabled = getCookieValue('user-decided')
+    if (isBrowser && !isGAEnabled) {
+      return <GDPR />
+    }
+  }
 
   const postsNavigation = ({ prev, next }) => (
     <div className="nav-posts">
@@ -45,6 +55,7 @@ const Template = ({ data, pageContext }) => {
 
   return (
     <div id="blog-post">
+      <div className="gdpr-modal">{gdprCheck()}</div>
       <Layout switchLang={switchLang}>
         <SEO title={frontmatter.title} />
         <article dangerouslySetInnerHTML={{ __html: html }} />

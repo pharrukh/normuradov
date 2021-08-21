@@ -9,6 +9,7 @@ import NoPostsMessage from "components/noPostsMessage/NoPostsMessage"
 import pageState from "components/pageState"
 
 import "styles/pages/index.scss"
+import { getCookieValue } from '../services/cookie'
 
 const IndexPage = props => {
   // language "state" of the page
@@ -73,7 +74,8 @@ const IndexPage = props => {
 
   const gdprCheck = () => {
     const isBrowser = typeof window !== `undefined`
-    if (isBrowser && localStorage.getItem("GA-allowance") !== "allow") {
+    const isGAEnabled = getCookieValue('user-decided')
+    if (isBrowser && !isGAEnabled) {
       return <GDPR />
     }
   }
