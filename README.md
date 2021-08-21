@@ -82,3 +82,6 @@ author: "Farrukh Normuradov"
 - remove `for a while` language switching
 - learn how to use mailchimp efficiently
 - learn if it is possible to fetch data from google analytics
+- remove subscription id from the code base and clean history
+- validate cookie complines
+- clean style files and remove not used sections
