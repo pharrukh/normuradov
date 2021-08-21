@@ -85,3 +85,4 @@ author: "Farrukh Normuradov"
 - remove subscription id from the code base and clean history
 - validate cookie complines
 - clean style files and remove not used sections
+- add section with projects and user count
