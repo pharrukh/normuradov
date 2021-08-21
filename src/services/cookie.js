@@ -1,5 +1,5 @@
-export const deleteCookie = (name, path, domain) => {
-  if (containsCookie(name)) {
+export const deleteCookie = (document, name, path, domain) => {
+  if (containsCookie(document, name)) {
     document.cookie = name + "=" +
       ((path) ? ";path=" + path : "") +
       ((domain) ? ";domain=" + domain : "") +
@@ -7,15 +7,16 @@ export const deleteCookie = (name, path, domain) => {
   }
 }
 
-export const containsCookie = (name) => {
-  return  document.cookie.split(';').some(c => c.trim().startsWith(name + '='));
-}
 
-export const getCookieValue = (name) => {
-  if (!containsCookie(name)) {
+export const getCookieValue = (document, name) => {
+  if (!containsCookie(document, name)) {
     return undefined
   }
   const cookieNameAndValue = document.cookie.split(';').find(c => c.trim().startsWith(name + '='));
   const [, value] = cookieNameAndValue.split('=')
   return value
+}
+
+const containsCookie = (document, name) => {
+  return document.cookie.split(';').some(c => c.trim().startsWith(name + '='));
 }

@@ -74,7 +74,7 @@ const IndexPage = props => {
 
   const gdprCheck = () => {
     const isBrowser = typeof window !== `undefined`
-    const isGAEnabled = getCookieValue('user-decided')
+    const isGAEnabled = getCookieValue(document, 'user-decided')
     if (isBrowser && !isGAEnabled) {
       return <GDPR />
     }

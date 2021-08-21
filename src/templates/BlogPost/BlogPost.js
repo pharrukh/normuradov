@@ -15,7 +15,7 @@ const Template = ({ data, pageContext }) => {
 
   const gdprCheck = () => {
     const isBrowser = typeof window !== `undefined`
-    const isGAEnabled = getCookieValue('user-decided')
+    const isGAEnabled = getCookieValue(document, 'user-decided')
     if (isBrowser && !isGAEnabled) {
       return <GDPR />
     }

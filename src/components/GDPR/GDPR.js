@@ -21,8 +21,8 @@ const GDPR = props => {
       document.cookie = `${pluginCookieName}=${userDesitionForGoogleAnalytics}; expires=${oneWeekInFuture.toString()}; path=/`
       document.cookie = `${userDecidedCookieName}=true; expires=${oneWeekInFuture.toString()}; path=/`
       const domainName = window.location.hostname === 'localhost' ? 'localhost' : `.${window.location.hostname}`;
-      deleteCookie('_ga', '/', domainName)
-      deleteCookie('_gid', '/', domainName)
+      deleteCookie(document, '_ga', '/', domainName)
+      deleteCookie(document, '_gid', '/', domainName)
     }
   }
 
