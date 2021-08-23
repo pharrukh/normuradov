@@ -12,7 +12,7 @@ import "styles/pages/archives.scss"
 const ArchivesPage = props => {
   const [language, switchLang] = useState("en")
 
-  useEffect(() => pageState(switchLang))
+  useEffect(() => pageState(switchLang),[])
 
   const {
     allMarkdownRemark: { group: queryData },

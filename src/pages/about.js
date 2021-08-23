@@ -11,7 +11,7 @@ import "styles/pages/about.scss"
 const About = () => {
   const [language, switchLang] = useState("en")
 
-  useEffect(() => pageState(switchLang))
+  useEffect(() => pageState(switchLang),[])
 
   const {
     allMarkdownRemark: { edges: data },

@@ -17,8 +17,8 @@
   flex-direction: column;
   position: fixed;
   width: $width;
-  height: 33vh;
-  bottom: -10vh;
+  height: auto;
+  bottom: -45vh;
   left: calc(50% - #{$width} / 2);
   z-index: 12;
 
@@ -27,8 +27,7 @@
   color: var(--color-main);
   border-radius: 0.5em;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-  padding: 1rem;
-
+  padding: 1rem 1rem .5em 1rem;
   transition: transform 0.5s ease-in-out;
 
   a {
@@ -75,9 +74,11 @@
 .gdpr-allowence {
   align-self: center;
   margin-top: 0.45em;
+
   .buttons {
     button {
-      font-size: 0.75rem;
+      font-family: $font-header;
+      font-size: 0.65rem;
       margin-left: 1em;
       padding: 0.3em;
     }

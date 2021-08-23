@@ -9,9 +9,9 @@ import pageState from "components/pageState"
 import "styles/pages/404.scss"
 
 const NotFoundPage = () => {
-  const [language, switchLang] = useState("en")
+  const [, switchLang] = useState("en")
 
-  useEffect(() => pageState(switchLang))
+  useEffect(() => pageState(switchLang),[])
 
   const Illustration = () => (
     <svg viewBox="0 0 1545.2343 537.28125" className="page-404-illustration">

@@ -7,7 +7,7 @@ import PropTypes from "prop-types"
 import "./header.scss"
 
 const Header = ({ siteTitle }) => {
-  const [hidden, setHidden] = useState(false)
+  const [hidden] = useState(false)
 
 
   // changing theme: light <-> dark

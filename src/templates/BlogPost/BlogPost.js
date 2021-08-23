@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import SEO from "components/seo"
 import Layout from "components/Layout/layoutMain/LayoutMain"
 import pageState from "components/pageState"
@@ -9,9 +9,9 @@ import { getCookieValue } from '../../services/cookie'
 
 const Template = ({ data, pageContext }) => {
   const { frontmatter, html } = data.markdownRemark
-  const [language, switchLang] = useState("en")
+  const [, switchLang] = useState("en")
 
-  useEffect(() => pageState(switchLang))
+  useEffect(() => pageState(switchLang), [])
 
   const gdprCheck = () => {
     const isBrowser = typeof window !== `undefined`
