@@ -87,3 +87,4 @@ author: "Farrukh Normuradov"
 - clean style files and remove not used sections
 - add section with projects and user count
 - make cookie pop-up responsive for desktop view
+- fix logo rendering in firefox
