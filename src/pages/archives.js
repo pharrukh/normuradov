@@ -12,7 +12,7 @@ import "styles/pages/archives.scss"
 const ArchivesPage = props => {
   const [language, switchLang] = useState("en")
 
-  useEffect(() => pageState(switchLang),[])
+  useEffect(() => pageState(switchLang), [])
 
   const {
     allMarkdownRemark: { group: queryData },
@@ -68,7 +68,8 @@ const ArchivesPage = props => {
       {postsData[language].map(post => (
         <div className="post" key={post.id}>
           <time dateTime={post.date} >{post.date}</time>
-          <Link to={post.path} className='title'>{post.title}</Link>
+          <Link to={post.path} className='title'>{post.title}
+            <p>{post.description}</p></Link>
         </div>
       ))}
     </>
