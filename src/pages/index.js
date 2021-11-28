@@ -16,7 +16,7 @@ const IndexPage = props => {
   const [language, switchLang] = useState("en")
 
   // update the settings upon refreshing
-  useLayoutEffect(() => pageState(switchLang),[])
+  useLayoutEffect(() => pageState(switchLang), [])
 
   // quering the data from .md files to get posts menu
   // -> we need .md with type="post" frontmatter
@@ -66,7 +66,11 @@ const IndexPage = props => {
       {posts[language].map((post, i) => (
         <div className="post" key={i}>
           <time dateTime={post.date}>{post.date}</time>
-          <Link to={post.path} className="title">{post.title}</Link>
+          <Link to={post.path} className="title">
+            {post.title}
+            <p>{post.description}</p>
+          </Link>
+
         </div>
       ))}
     </>

@@ -44,5 +44,10 @@ main {
         filter: var(--color-link-hover);
       }
     }
+
+    p {
+      margin-top: 0.2em;
+      color: black;
+    }
   }
 }
