@@ -89,3 +89,4 @@ author: "Farrukh Normuradov"
 - make cookie pop-up responsive for desktop view
 - fix logo rendering in firefox
 - add micro-blogging tab and move posts there
+- test
