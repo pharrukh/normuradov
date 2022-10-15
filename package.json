@@ -11,6 +11,10 @@
     "scripts": {
         "format": "prettier --write \"**/*.{js,jsx,json,md}\""
     },
+    "engines": {
+        "node": "16.x",
+        "npm": "8.x"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/pharrukh/normuradov"
