@@ -3,7 +3,6 @@ variables:
 
 trigger:
 - master
-- 11ty
 
 pool:
   vmImage: 'windows-latest'
