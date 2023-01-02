@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Alegreya+Sans:wght@500&display=swap');
+
 /* Defaults */
 :root {
-  --font-family: -apple-system, system-ui, sans-serif;
-  --font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+  --font-family:  'Alegreya', serif;/* -apple-system, system-ui, sans-serif; */
+  --font-family-monospace:  Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+  --font-family-header: 'Alegreya Sans', sans-serif;
 }
 
 /* Theme colors */
@@ -46,6 +49,10 @@ body {
   background-color: var(--background-color);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-header);
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -53,6 +60,7 @@ p,
 .tmpl-post li,
 img {
   max-width: 37.5em; /* 600px /16 */
+  max-height: 37.5em;
 }
 p,
 .tmpl-post li {
