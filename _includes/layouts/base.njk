@@ -17,17 +17,36 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <!-- favicon:end -->
+    <meta name="theme-color" content="#ffffff"> <!-- favicon:end -->
     <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-MGM0KF7K9V"> </script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
+    <script type="text/plain" cookie-consent="tracking">
+      window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date());
       gtag('config', 'G-MGM0KF7K9V');
     </script>
+    <!-- Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
+    <script
+      type="text/javascript"
+      src="//www.freeprivacypolicy.com/public/cookie-consent/4.0.0/cookie-consent.js"
+      charset="UTF-8"></script>
+    <script type="text/javascript" charset="UTF-8">
+      document.addEventListener('DOMContentLoaded', function () {
+        cookieconsent.run({
+          "notice_banner_type": "simple",
+          "consent_type": "express",
+          "palette": "light",
+          "language": "en",
+          "page_load_consent_levels": ["strictly-necessary"],
+          "notice_banner_reject_button_hide": false,
+          "preferences_center_close_button_hide": false,
+          "page_refresh_confirmation_buttons": false,
+          "website_name": "normuradov.com"
+        });
+      });
+    </script>
+    <noscript>Cookie Consent by
+      <a href="https://www.freeprivacypolicy.com/" rel="noopener">Free Privacy Policy Generator</a>
+    </noscript>
+    <!-- End Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
   </head>
   <body>
     <header>
@@ -46,7 +65,11 @@
     <main {% if templateClass %} class="{{ templateClass }}" {% endif %}>
       {{ content | safe }}
     </main>
-    <footer></footer>
+    <footer>
+      <!-- Below is the link that users can use to open Preferences Center to change their preferences. Do not modify the ID
+      parameter. Place it where appropriate, style it as needed. -->
+      <a href="#" id="open_preferences_center">update cookies preferences</a>
+    </footer>
     <!-- Current page: {{ page.url | url }} -->
   </body>
 </html>
