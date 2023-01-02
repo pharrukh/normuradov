@@ -1,7 +1,7 @@
 {
-  "name": "eleventy-base-blog",
-  "version": "7.0.0",
-  "description": "A starter repository for a blog web site using the Eleventy static site generator.",
+  "name": "normuradov-blog",
+  "version": "2.0.0",
+  "description": "Personal Blog",
   "scripts": {
     "build": "npx @11ty/eleventy",
     "bench": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
@@ -15,9 +15,8 @@
     "url": "git://github.com/11ty/eleventy-base-blog.git"
   },
   "author": {
-    "name": "Zach Leatherman",
-    "email": "zachleatherman@gmail.com",
-    "url": "https://zachleat.com/"
+    "name": "Farrukh Normuradov",
+    "url": "https://normuradov.com/"
   },
   "license": "MIT",
   "bugs": {
