@@ -26,4 +26,6 @@ steps:
     azureSubscription: 'Pay-As-You-Go (ef7fec7f-59c8-46f3-8fd6-b66cbd0a1205)'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: az storage blob upload-batch --account-name $(AZURE_STORAGE_ACCOUNT) --account-key $(AZURE_STORAGE_KEY) -s ./_site/. -d '$(DESTINATION)'
+    inlineScript: 'az storage blob upload-batch --account-name $(AZURE_STORAGE_ACCOUNT) --account-key $(AZURE_STORAGE_KEY) -s ./_site/. -d ''$(DESTINATION)'''
+    addSpnToEnvironment: true
+    useGlobalConfig: true
