@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Alegreya+Sans:wght@500&display=swap');
 
+
+
 /* Defaults */
 :root {
   --font-family:  'Alegreya', serif;
   --font-family-monospace:  Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
   --font-family-header: 'Alegreya Sans', sans-serif;
+  --lego-yellow: #FFED00;
+  --lego-red: #E3000B;
+  --lego-black: #0F0F0F;
 }
 
 /* Theme colors */
@@ -261,4 +266,13 @@ a[href].direct-link:focus:visited,
 :hover > a[href].direct-link,
 :hover > a[href].direct-link:visited {
   color: #aaa;
+}
+
+#under-contruction {
+  text-align: center;
+  font-weight: 700;
+  font-size:x-large;
+  border-top: solid 10px;
+  border-image: repeating-linear-gradient( -75deg, var(--lego-yellow),var(--lego-yellow) 10px, var(--lego-black) 10px, var(--lego-black) 20px) 20;
+  border-bottom: solid 10px;
 }
