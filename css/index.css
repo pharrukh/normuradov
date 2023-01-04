@@ -106,6 +106,7 @@ pre,
 code {
   font-family: var(--font-family-monospace);
   line-height: 1.5;
+
 }
 pre {
   font-size: 14px;
@@ -125,8 +126,10 @@ pre {
   margin: .5em 0;
   background-color: #f6f6f6;
 }
+
 code {
   word-break: break-all;
+  margin-left: 1em;
 }
 
 /* Header */
@@ -275,4 +278,8 @@ a[href].direct-link:focus:visited,
   border-top: solid 10px;
   border-image: repeating-linear-gradient( -75deg, var(--lego-yellow),var(--lego-yellow) 10px, var(--lego-black) 10px, var(--lego-black) 20px) 20;
   border-bottom: solid 10px;
+}
+
+#open_preferences_center {
+  margin-left: 1em;
 }
