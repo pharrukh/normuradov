@@ -1,0 +1,14 @@
+---
+layout: layouts/home.njk
+permalink: /essays/
+eleventyNavigation:
+  key: essays
+  order: 4
+---
+
+<h1>essays</h1>
+<div id="under-contruction">
+  Content to be added.
+</div>
+{% set postslist = collections.essays %}
+{% include "postslist.njk" %}

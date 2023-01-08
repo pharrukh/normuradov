@@ -1,7 +1,7 @@
 ---
 title: Artyom about me
 description: what my student Artyom writes about me
-date: 2023-01-06
+date: 2022-09-06
 tags: endorsement
 layout: layouts/post.njk
 author: Farrukh Normuradov

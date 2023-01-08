@@ -1,7 +1,7 @@
 ---
 title: Akbar about me
 description: what my mentee Akbar writes about me
-date: 2023-01-06
+date: 2022-09-20
 tags: endorsement
 layout: layouts/post.njk
 author: Farrukh Normuradov

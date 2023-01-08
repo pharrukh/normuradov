@@ -1,11 +1,12 @@
 ---
 pagination:
-  data: collections.all
+  data: collections.allMyContent
   size: 20
   alias: entries
 layout: layouts/home.njk
 permalink: /page-list/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}
 ---
+
 <table>
   <thead>
     <tr>
@@ -14,11 +15,15 @@ permalink: /page-list/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber
     </tr>
   </thead>
   <tbody>
-{%- for entry in entries %}
-  <tr>
-    <td><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></td>
-    <td>{{ entry.data.title }}</td>
-  </tr>
-{%- endfor %}
+    {%- for entry in entries %}
+      <tr>
+        <td>
+          <a href="{{ entry.url }}">
+            <code>{{ entry.url }}</code>
+          </a>
+        </td>
+        <td>{{ entry.data.title }}</td>
+      </tr>
+    {%- endfor %}
   </tbody>
 </table>
