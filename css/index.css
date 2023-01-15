@@ -85,6 +85,8 @@ main :first-child {
 }
 header {
   border-bottom: 1px dashed var(--color-gray-20);
+  display: flex;
+  align-items: center;
 }
 header:after {
   content: "";
@@ -132,12 +134,12 @@ code {
 
 /* Header */
 .home {
-  padding: 0 1rem;
+  padding-left: 1rem;
   float: left;
-  margin: 1rem 0; /* 16px /16 */
-  font-size: 1em; /* 16px /16 */
+  margin: 0.5rem 0; /* 16px /16 */
+  font-size: 2em;
 }
-.home :link:not(:hover) {
+.home :link {
   text-decoration: none;
 }
 
