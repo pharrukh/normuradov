@@ -142,6 +142,9 @@ code {
 .home :link {
   text-decoration: none;
 }
+.home a[href] {
+  color: var(--text-color);
+}
 
 /* Nav */
 .nav {
@@ -156,6 +159,7 @@ code {
 }
 .nav-item a[href]:not(:hover) {
   text-decoration: none;
+  color: var(--text-color);
 }
 .nav-item-active {
   font-weight: 700;
