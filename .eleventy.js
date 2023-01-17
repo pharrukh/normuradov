@@ -4,6 +4,7 @@ const { DateTime } = require("luxon")
 const markdownIt = require("markdown-it")
 const markdownItAnchor = require("markdown-it-anchor")
 const {IgnoredTagsForMainCollection} = require('./logic/constants')
+const {sortPostItemsByDate} = require('./logic/api')
 
 const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
@@ -53,15 +54,15 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("filterTagList", filterTagList)
 
-  eleventyConfig.addCollection("allMyContent", function (collectionApi) {
-    return collectionApi.getAll().filter(function (item) {
+  eleventyConfig.addCollection("allMyContent", collectionApi =>
+     collectionApi.getAll().filter(function (item) {
       if (Array.isArray(item.data.tags)) {
         return !item.data.tags.some((tag) => IgnoredTagsForMainCollection.includes(tag))
       }
 
       return false
-    })
-  })
+    }).sort(sortPostItemsByDate)
+  )
 
   eleventyConfig.addCollection("endorsements", (api) =>
     api.getFilteredByTag("endorsement")
