@@ -5,14 +5,27 @@ eleventyNavigation:
   order: 1
 ---
 
+<div class="small-projects-block">
+  <h2>
+    projects
+  </h2>
+  <ul>
+    <li>
+      <a href="https://www.uzbekistananalytics.com/">uzbekistan analytics</a>
+      - services for Uzbekistanis</li>
+    <li>
+      <a href="https://www.npmjs.com/package/gdpr-person-generator">gdpr person generator</a>
+      - an npm package</li>
+  </ul>
+</div>
 {% set maxPosts = collections.allMyContent.length | min(3) %}
-<h1>latest
+<h2>latest
   {% if maxPosts == 1 %}Post
   {% else %}
     {{ maxPosts }} posts{% endif %}
-</h1>
+</h2>
 {% set postslist = collections.allMyContent | head(-3) %}
 {% set postslistCounter = collections.allMyContent | length %}
 {% include "postslist.njk" %}
-<p>More posts can be found in
-  <a href="{{ '/archive/' | url }}">the archive</a>.</p>
+<div>More posts can be found in
+  <a href="{{ '/archive/' | url }}">the archive</a>.</div>

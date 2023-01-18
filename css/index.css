@@ -289,3 +289,9 @@ a[href].direct-link:focus:visited,
 #open_preferences_center {
   margin-left: 1em;
 }
+
+/* Other */
+.small-projects-block ul{
+    list-style-type: '- ';
+    padding-left: 1em;
+}
