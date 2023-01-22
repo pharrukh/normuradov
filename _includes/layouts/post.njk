@@ -18,6 +18,14 @@ templateClass: tmpl-post
   <div class="whatsapp">Send</div>
   <div class="reddit">Share</div>
 </div>
+<script
+  src="https://utteranc.es/client.js"
+  repo="pharrukh/normuradov"
+  issue-term="pathname"
+  label="FN-"
+  theme="preferred-color-scheme"
+  crossorigin="anonymous"
+  async></script>
 {%- if collections.posts %}
   {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
   {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
