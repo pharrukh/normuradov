@@ -295,3 +295,11 @@ a[href].direct-link:focus:visited,
     list-style-type: '- ';
     padding-left: 1em;
 }
+
+/* Comments Style*/
+.utterances {
+  margin-left: 0;
+}
+.utterances-frame {
+
+}
