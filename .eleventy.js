@@ -1,5 +1,4 @@
 const fs = require("fs")
-const EleventyPluginOgImage = require("eleventy-plugin-og-image")
 const { IgnoredTagsForMainCollection } = require("./logic/constants")
 
 const { DateTime } = require("luxon")
@@ -53,9 +52,6 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("toAbsoluteImageUrl", toAbsoluteImageUrl)
 
-  eleventyConfig.addPlugin(EleventyPluginOgImage, {
-    satoriOptions: {},
-  })
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy")
