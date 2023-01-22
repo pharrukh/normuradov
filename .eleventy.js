@@ -1,10 +1,12 @@
 const fs = require("fs")
+const EleventyPluginOgImage = require("eleventy-plugin-og-image")
+const { IgnoredTagsForMainCollection } = require("./logic/constants")
 
 const { DateTime } = require("luxon")
 const markdownIt = require("markdown-it")
 const markdownItAnchor = require("markdown-it-anchor")
-const {IgnoredTagsForMainCollection} = require('./logic/constants')
-const {sortPostItemsByDate} = require('./logic/api')
+const { sortPostItemsByDate } = require("./logic/api")
+const site = require("./_data/site")
 
 const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
@@ -13,12 +15,47 @@ const pluginNavigation = require("@11ty/eleventy-navigation")
 module.exports = function (eleventyConfig) {
   // Copy the `img` and `css` folders to the output
   eleventyConfig.addPassthroughCopy("img")
+  eleventyConfig.addPassthroughCopy("js")
   eleventyConfig.addPassthroughCopy("css")
   eleventyConfig.addPassthroughCopy({ favicon: "/." })
   // Add plugins
   eleventyConfig.addPlugin(pluginRss)
   eleventyConfig.addPlugin(pluginSyntaxHighlight)
   eleventyConfig.addPlugin(pluginNavigation)
+
+  /**
+   * Prefixes the given URL with the site's base URL.
+   * @param {string} url
+   */
+  eleventyConfig.addFilter("toAbsoluteUrl", (url) => {
+    return new URL(url, site.baseUrl).href
+  })
+
+  /** Given a local or remote image source, returns the absolute URL
+   * to the image that will eventually get generated once the site is built.
+   * @param {string} src The full path to the source image.
+   * @param {null|number} width The width of the image whose URL we want to return.
+   */
+  const toAbsoluteImageUrl = async (src, width = null) => {
+    const imageOptions = {
+      // We only need the original width and format
+      widths: [width],
+      formats: [null],
+      // Where the generated image files get saved
+      outputDir: "_site/img",
+      // Public URL path that's referenced in the img tag's src attribute
+      urlPath: "/img",
+    }
+    const stats = await Image(src, imageOptions)
+    const imageUrl = Object.values(stats)[0][0].url
+    return toAbsoluteUrl(imageUrl)
+  }
+
+  eleventyConfig.addFilter("toAbsoluteImageUrl", toAbsoluteImageUrl)
+
+  eleventyConfig.addPlugin(EleventyPluginOgImage, {
+    satoriOptions: {},
+  })
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy")
@@ -54,14 +91,19 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("filterTagList", filterTagList)
 
-  eleventyConfig.addCollection("allMyContent", collectionApi =>
-     collectionApi.getAll().filter(function (item) {
-      if (Array.isArray(item.data.tags)) {
-        return !item.data.tags.some((tag) => IgnoredTagsForMainCollection.includes(tag))
-      }
+  eleventyConfig.addCollection("allMyContent", (collectionApi) =>
+    collectionApi
+      .getAll()
+      .filter(function (item) {
+        if (Array.isArray(item.data.tags)) {
+          return !item.data.tags.some((tag) =>
+            IgnoredTagsForMainCollection.includes(tag)
+          )
+        }
 
-      return false
-    }).sort(sortPostItemsByDate)
+        return false
+      })
+      .sort(sortPostItemsByDate)
   )
 
   eleventyConfig.addCollection("endorsements", (api) =>
