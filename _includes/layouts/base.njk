@@ -75,7 +75,9 @@
         {%- endfor %}
       </ul>
     </header>
-    <main {% if templateClass %} class="{{ templateClass }}" {% endif %}></main>
+    <main {% if templateClass %} class="{{ templateClass }}" {% endif %}>
+      {{ content | safe }}
+    </main>
     <footer>
       <!-- Below is the link that users can use to open Preferences Center to change their preferences. Do not modify the ID
       parameter. Place it where appropriate, style it as needed. -->
