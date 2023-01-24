@@ -22,8 +22,13 @@
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{ title }}"/>
     <meta property="og:description" content="{{ description }}"/>
-    <meta
-    property="og:image" content=" {{ './img/og-blog-image.svg' | toAbsoluteUrl }}"/>
+    {% if postImage %}
+      <meta name="twitter:image" property="og:image" content="{{ site.cloudinaryUrl }}/w_1200,f_auto/co_rgb:080000,e_colorize:50/l_text:Georgia_110_bold_center:{{ title }},co_rgb:eee,c_fit,w_800/{{ postImage }}"/>
+      <meta name="twitter:image:alt" property="og:image:alt" content="{{ title }}"/>
+    {% else %}
+      <meta name="twitter:image" property="og:image" content="{{ site.meta.ogImg }}"/>
+      <meta name="twitter:image:alt" property="og:image:alt" content="{{ site.meta.ogImgAlt }}"/>
+    {% endif %}
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGM0KF7K9V"></script>
     <script type="text/plain" cookie-consent="tracking">
@@ -70,9 +75,7 @@
         {%- endfor %}
       </ul>
     </header>
-    <main {% if templateClass %} class="{{ templateClass }}" {% endif %}>
-      {{ content | safe }}
-    </main>
+    <main {% if templateClass %} class="{{ templateClass }}" {% endif %}></main>
     <footer>
       <!-- Below is the link that users can use to open Preferences Center to change their preferences. Do not modify the ID
       parameter. Place it where appropriate, style it as needed. -->
