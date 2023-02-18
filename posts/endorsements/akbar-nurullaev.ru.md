@@ -1,4 +1,5 @@
 ---
+eleventyExcludeFromCollections: true
 title: Akbar about me
 description: what my mentee Akbar writes about me
 date: 2022-09-20
