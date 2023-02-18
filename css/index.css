@@ -303,3 +303,8 @@ a[href].direct-link:focus:visited,
 .utterances-frame {
 
 }
+
+.description {
+  margin-top: -1em;
+  color: var(--color-gray-50);
+}

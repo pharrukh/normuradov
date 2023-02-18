@@ -4,6 +4,7 @@ templateClass: tmpl-post
 ---
 
 <h1>{{ title }}</h1>
+<p class="description">{{ description }}</p>
 <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
 {%- for tag in tags | filterTagList %}
   {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
@@ -26,6 +27,17 @@ templateClass: tmpl-post
   theme="preferred-color-scheme"
   crossorigin="anonymous"
   async></script>
+  <script>
+    // Get the img object using its Id
+    img = document.getElementById('my-img');
+    // Function to increase image size
+    function enlargeImg() {
+        // Set image size to 1.5 times original
+        img.style.transform = "scale(1.5)";
+        // Animation effect
+        img.style.transition = "transform 0.25s ease";
+    }
+</script>
 {%- if collections.posts %}
   {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
   {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
