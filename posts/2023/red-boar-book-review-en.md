@@ -1,6 +1,6 @@
 ---
 title: read red book with boar if you are not junior
-description: review on the masterpiece by Dr Martin Kleppmann
+description: review on the masterpiece by Dr Martin Kleppmann - Designing Data-Intensive Applications
 date: 2023-02-19
 tags:
   - book review
