@@ -20,14 +20,19 @@ eleventyNavigation:
     </ul>
   </div>
 </div>
-{% set maxPosts = collections.allMyContent.length | min(3) %}
+{% set maxPosts = collections.allMyContent.length | min(5) %}
 <h2>latest
   {% if maxPosts == 1 %}Post
   {% else %}
     {{ maxPosts }} posts{% endif %}
 </h2>
-{% set postslist = collections.allMyContent | head(-3) %}
+{% set postslist = collections.allMyContent | head(-5) %}
 {% set postslistCounter = collections.allMyContent | length %}
 {% include "postslist.njk" %}
-<div>More posts can be found in
-  <a href="{{ '/archive/' | url }}">the archive</a>.</div>
+<div>
+  follow me 👉
+  <a href="https://t.me/fnormuradov">
+    <img style="width: 1em;" src="/img/tg-logo.png"></div>
+  </a>
+  <div>more posts can be found in
+    <a href="{{ '/archive/' | url }}">the archive</a>.</div>

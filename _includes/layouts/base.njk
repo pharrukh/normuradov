@@ -91,15 +91,32 @@
     <main {% if templateClass %} class="{{ templateClass }}" {% endif %}>
       {{ content | safe }}
     </main>
-    <footer>
+    <footer
+      class="hidden-mobile">
       <!-- Below is the link that users can use to open Preferences Center to change their preferences. Do not modify the ID
       parameter. Place it where appropriate, style it as needed. -->
-      <a href="#" id="open_preferences_center">update cookies preferences</a>
+      <a href="#" id="open_preferences_center">settings</a>
       <a href="http://eepurl.com/dAJKTv">newsletter</a>
       <a href="https://us18.list-manage.com/contact-form?u=e99154705a8dedeb8c7665d30&form_id=3fd9a92e3bb983bbf7e554ad4bae6b5a">
         contact me</a>
-    </footer>
-    <!-- Current page: {{ page.url | url }} -->
+      <a href="https://leetcode.com/pharrukh/">
+        <img class="social-network" src="/img/lc-logo.png">
+      </a>
+      <a href="https://stackoverflow.com/users/3407539/farrukh-normuradov">
+        <img class="social-network" src="/img/so-logo.svg">
+      </a>
+      <a href="https://www.linkedin.com/in/farrukh-normuradov/">
+        <img class="social-network" src="/img/li-logo.png">
+      </a>
+      <a href="https://t.me/fnormuradov">
+        <img class="social-network" src="/img/tg-logo.png">
+      </a>
+      <a href="https://www.facebook.com/farrukh.normuradov/">
+        <img class="social-network" src="/img/fb-logo.png">
+      </a>
+      <a href="https://www.instagram.com/farrukh.normuradov/">
+        <img class="social-network" src="/img/inst-logo.png">
+      </a>
+    </body>
   </body>
-  <script src="{{ '/js/likely.min.js' | url }}" type="text/javascript"></script>
-</html>
+</html></footer><!-- Current page: {{ page.url | url }} --></body><script src="{{ '/js/likely.min.js' | url }}" type="text/javascript"></script></html>
