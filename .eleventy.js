@@ -52,6 +52,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("toAbsoluteImageUrl", toAbsoluteImageUrl)
 
+  eleventyConfig.addFilter("encode", (url) => {
+    return encodeURI(url)
+  })
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy")
