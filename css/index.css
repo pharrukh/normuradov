@@ -308,3 +308,8 @@ a[href].direct-link:focus:visited,
   margin-top: -1em;
   color: var(--color-gray-50);
 }
+
+.projects a {
+  font-size: 1.1875em;
+  font-weight: bold;
+}
