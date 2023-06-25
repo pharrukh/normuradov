@@ -1,3 +1,3 @@
 module.exports = {
-  IgnoredTagsForMainCollection: ["endorsement"]
+  IgnoredTagsForMainCollection: ["endorsement", "essay"]
 }
