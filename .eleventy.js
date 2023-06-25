@@ -109,6 +109,10 @@ module.exports = function (eleventyConfig) {
     api.getFilteredByTag("endorsement")
   )
 
+  eleventyConfig.addCollection("essays", (api) =>
+    api.getFilteredByTag("essay")
+  )
+
   // Create an array of all tags
   eleventyConfig.addCollection("tagList", function (collection) {
     let tagSet = new Set()
