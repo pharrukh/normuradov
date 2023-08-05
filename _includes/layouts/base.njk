@@ -6,8 +6,7 @@
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}"> {#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
     {#- <meta name="generator" content="{{ eleventy.generator }}"> #} <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/prism-diff.css' | url }}">
+    <link href="{{ '/css/prism.css' | url }}" rel="stylesheet"/>
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -119,4 +118,15 @@
       </a>
     </body>
   </body>
-</html></footer><!-- Current page: {{ page.url | url }} --></body><script src="{{ '/js/likely.min.js' | url }}" type="text/javascript"></script></html>
+</html></footer><!-- Current page: {{ page.url | url }} --></body>
+<script src="{{ '/js/likely.min.js' | url }}" type="text/javascript"></script>
+<script src="{{ '/js/prism.js' | url }}" type="text/javascript"></script>
+<script>
+    Prism.hooks.add("before-highlight", function (env) {
+        env.code = env.element.innerText;
+    });
+
+    code = document.getElementsByTagName('code');
+    Array.from(code).forEach(el => { Prism.highlightElement(el) });
+</script>
+</html>
