@@ -2,3 +2,7 @@ _site/
 node_modules/
 package-lock.json
 .DS_Store
+.firebase/
+firebase-debug.log
+
+_originals/

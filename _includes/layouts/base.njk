@@ -1,27 +1,35 @@
 <!doctype html>
-<html lang="{{ metadata.language }}">
+<html lang="{{ lang or metadata.language }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title or metadata.title }}</title>
-    <meta name="description" content="{{ description or metadata.description }}"> {#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
-    {#- <meta name="generator" content="{{ eleventy.generator }}"> #} <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
-    <link href="{{ '/css/prism.css' | url }}" rel="stylesheet"/>
+    <meta name="color-scheme" content="light dark">
+    <script>
+      {#- Apply a stored light/dark override before first paint (prevents a flash of the wrong theme). #}
+      try { document.querySelector('meta[name="color-scheme"]').content = localStorage.getItem("color-scheme") ?? "light dark"; } catch (e) {}
+    </script>
+    <title>{% if title %}{{ title }} · {% endif %}{{ metadata.title }}</title>
+    <meta name="description" content="{{ description or metadata.description }}">
+    {#- Fonts are self-hosted (see css/fonts.css) so no visitor data goes to Google Fonts. #}
+    <link rel="preload" href="/fonts/newsreader-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{{ '/css/fonts.css' | url }}">
+    <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta
-    name="theme-color" content="#ffffff"> <!-- favicon:end -->
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0b6e70">
+    <meta name="msapplication-TileColor" content="#0b6e70">
+    <meta name="theme-color" content="#faf6ef" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="{{ page.url | toAbsoluteUrl }}">
     <meta property="og:url" content="{{ page.url | toAbsoluteUrl }}"/>
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content="{{ title }}"/>
-    <meta property="og:description" content="{{ description }}"/>
-    <meta name="author" content="Farrukh Normuradov">
+    <meta property="og:title" content="{{ title or metadata.title }}"/>
+    <meta property="og:description" content="{{ description or metadata.description }}"/>
+    <meta name="author" content="{{ metadata.author.name }}">
     <meta name="twitter:card" content="summary_large_image"/>
     {% if postImage %}
       <meta name="twitter:image" property="og:image" content="{{ site.cloudinaryUrl }}/c_fill,h_589,w_1200/w_1200,f_auto/co_rgb:080000,e_colorize:50/w_100,g_south_east,x_40,y_40,l_logo_ffe8k4/w_100,g_north_west,x_40,y_40,l_qr_snofb6/l_text:Georgia_110_bold_center:{{ title | encode }},co_rgb:eee,c_fit,w_800/{{ postImage }}"/>
@@ -30,103 +38,171 @@
       <meta name="twitter:image" property="og:image" content="{{ site.meta.ogImg }}"/>
       <meta name="twitter:image:alt" property="og:image:alt" content="{{ site.meta.ogImgAlt }}"/>
     {% endif %}
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGM0KF7K9V"></script>
+
+    {#-
+      Consent-gated scripts. Nothing below runs until the visitor opts in via the banner:
+      the consent tool only executes <script type="text/plain" cookie-consent="..."> blocks
+      for the levels the visitor accepted. Each block injects its own loader, so not even
+      the loader file is requested before consent.
+    #}
+    <!-- Google Analytics: "tracking" consent -->
     <script type="text/plain" cookie-consent="tracking">
+      (function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-MGM0KF7K9V';
+        document.head.appendChild(s);
+      })();
       window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date());
       gtag('config', 'G-MGM0KF7K9V');
     </script>
+
     <!-- Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
-    <script
-      type="text/javascript"
-      src="//www.freeprivacypolicy.com/public/cookie-consent/4.0.0/cookie-consent.js"
-      charset="UTF-8"></script>
+    <script type="text/javascript" src="https://www.freeprivacypolicy.com/public/cookie-consent/4.0.0/cookie-consent.js" charset="UTF-8"></script>
     <script type="text/javascript" charset="UTF-8">
       document.addEventListener('DOMContentLoaded', function () {
+        if (!window.cookieconsent) return; {#- blocked (e.g. by an ad blocker): gated scripts simply stay off. #}
+        {#- "simple" = small bottom bar instead of the full-screen interstitial. #}
+        var scheme = document.querySelector('meta[name="color-scheme"]').content;
+        var isDark = scheme === 'dark' || (scheme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
         cookieconsent.run({
-          "notice_banner_type": "interstitial",
+          "notice_banner_type": "simple",
           "consent_type": "express",
-          "palette": "light",
+          "palette": isDark ? "dark" : "light",
           "language": "en",
           "page_load_consent_levels": ["strictly-necessary"],
           "notice_banner_reject_button_hide": false,
           "preferences_center_close_button_hide": false,
           "page_refresh_confirmation_buttons": false,
-          "website_name": "www.normuradov.com"
+          "website_name": "www.normuradov.com",
+          "website_privacy_policy_url": "{{ '/privacy/' | toAbsoluteUrl }}"
         });
       });
     </script>
-    <script id="mcjs">
-      !function (c, h, i, m, p) {
-        m = c.createElement(h),
-        p = c.getElementsByTagName(h)[0],
-        m.async = 1,
-        m.src = i,
-        p.parentNode.insertBefore(m, p)
-      }(
-        document, "script", "https://chimpstatic.com/mcjs-connected/js/users/e99154705a8dedeb8c7665d30/e3d26f2d7bc15b77466b10b36.js"
-      );
-    </script>
-    <noscript>Cookie Consent by
-      <a href="https://www.freeprivacypolicy.com/" rel="noopener">Free Privacy Policy Generator</a>
-    </noscript>
-    <!-- End Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
-    <link href="{{ '/css/likely.min.css' | url }}" rel="stylesheet">
+    <!-- End Cookie Consent by FreePrivacyPolicy.com -->
   </head>
   <body>
-    <header>
-      <h1 class="home">
-        <a href="{{ '/' | url }}">[n]</a>
-      </h1>
-      {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-      <ul class="nav">
-        {%- for entry in collections.all | eleventyNavigation %}
-          <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}">
-            <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-          </li>
-        {%- endfor %}
-      </ul>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="logo" href="{{ '/' | url }}" aria-label="normuradov — home"><span class="bracket">[</span>n<span class="bracket">]</span></a>
+        {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
+        <nav aria-label="Main">
+          <ul class="nav">
+            {%- for entry in collections.all | eleventyNavigation %}
+              <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}">
+                <a href="{{ entry.url | url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+              </li>
+            {%- endfor %}
+          </ul>
+        </nav>
+        <button type="button" class="theme-toggle" id="theme-toggle">
+          <span class="to-dark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <span class="visually-hidden">Switch to dark theme</span>
+          </span>
+          <span class="to-light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            <span class="visually-hidden">Switch to light theme</span>
+          </span>
+        </button>
+      </div>
     </header>
-    <main {% if templateClass %} class="{{ templateClass }}" {% endif %}>
+
+    <main id="main"{% if templateClass %} class="{{ templateClass }}"{% endif %}>
       {{ content | safe }}
     </main>
-    <footer
-      class="hidden-mobile">
-      <!-- Below is the link that users can use to open Preferences Center to change their preferences. Do not modify the ID
-      parameter. Place it where appropriate, style it as needed. -->
-      <a href="#" id="open_preferences_center">settings</a>
-      <a href="http://eepurl.com/dAJKTv">newsletter</a>
-      <a href="https://us18.list-manage.com/contact-form?u=e99154705a8dedeb8c7665d30&form_id=3fd9a92e3bb983bbf7e554ad4bae6b5a">
-        contact me</a>
-      <a href="https://leetcode.com/pharrukh/">
-        <img class="social-network" src="/img/lc-logo.png">
-      </a>
-      <a href="https://stackoverflow.com/users/3407539/farrukh-normuradov">
-        <img class="social-network" src="/img/so-logo.svg">
-      </a>
-      <a href="https://www.linkedin.com/in/farrukh-normuradov/">
-        <img class="social-network" src="/img/li-logo.png">
-      </a>
-      <a href="https://t.me/fnormuradov">
-        <img class="social-network" src="/img/tg-logo.png">
-      </a>
-      <a href="https://www.facebook.com/farrukh.normuradov/">
-        <img class="social-network" src="/img/fb-logo.png">
-      </a>
-      <a href="https://www.instagram.com/farrukh.normuradov/">
-        <img class="social-network" src="/img/inst-logo.png">
-      </a>
-    </body>
-  </body>
-</html></footer><!-- Current page: {{ page.url | url }} --></body>
-<script src="{{ '/js/likely.min.js' | url }}" type="text/javascript"></script>
-<script src="{{ '/js/prism.js' | url }}" type="text/javascript"></script>
-<script>
-    Prism.hooks.add("before-highlight", function (env) {
-        env.code = env.element.innerText;
-    });
 
-    code = document.getElementsByTagName('code');
-    Array.from(code).forEach(el => { Prism.highlightElement(el) });
-</script>
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <ul class="footer-links">
+          {#- The consent tool opens its preferences center from the element with this ID; do not change it. #}
+          <li><a href="#" id="open_preferences_center">cookie settings</a></li>
+          <li><a href="{{ '/privacy/' | url }}">privacy</a></li>
+          <li><a href="{{ '/privacy/#who-is-responsible' | url }}" data-mail="farrukh.normuradov|gmail.com">contact me</a></li>
+          <li><a href="{{ metadata.feed.path | url }}">rss</a></li>
+        </ul>
+        {% include "social-icons.njk" %}
+        <p class="copyright">© {{ "now" | currentYear }} {{ metadata.author.name }} · written in Warsaw, rooted in Samarkand</p>
+      </div>
+    </footer>
+
+    <script>
+      // Light/dark toggle: two states — follow the system, or the opposite of it (stored in localStorage).
+      (function () {
+        var meta = document.querySelector('meta[name="color-scheme"]');
+        var systemDark = matchMedia('(prefers-color-scheme: dark)');
+        var rendered = function () {
+          return meta.content === 'light dark' ? (systemDark.matches ? 'dark' : 'light') : meta.content;
+        };
+        var syncComments = function () {
+          var frame = document.querySelector('.utterances-frame');
+          if (frame) frame.contentWindow.postMessage({ type: 'set-theme', theme: rendered() === 'dark' ? 'github-dark' : 'github-light' }, 'https://utteranc.es');
+        };
+        window.currentCommentTheme = function () { return rendered() === 'dark' ? 'github-dark' : 'github-light'; };
+        var apply = function (value) {
+          meta.content = value || 'light dark';
+          syncComments();
+        };
+        document.getElementById('theme-toggle').addEventListener('click', function () {
+          var target = rendered() === 'dark' ? 'light' : 'dark';
+          var system = systemDark.matches ? 'dark' : 'light';
+          try {
+            if (target === system) localStorage.removeItem('color-scheme');
+            else localStorage.setItem('color-scheme', target);
+          } catch (e) {}
+          apply(target === system ? null : target);
+        });
+        window.addEventListener('storage', function (e) {
+          if (e.key === 'color-scheme') apply(e.newValue);
+        });
+        systemDark.addEventListener('change', syncComments);
+        window.addEventListener('message', function (e) {
+          if (e.origin === 'https://utteranc.es') syncComments();
+        });
+      })();
+    </script>
+    <script>
+      // Click-to-load embeds: third-party content (YouTube, GitHub comments) loads only after
+      // the visitor asks for it, so no data goes to those services on a plain page view.
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-load-embed]');
+        if (!btn) return;
+        var box = btn.closest('.embed');
+        if (btn.dataset.loadEmbed === 'youtube') {
+          var f = document.createElement('iframe');
+          f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+          f.title = box.dataset.title || 'YouTube video';
+          f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          f.allowFullscreen = true;
+          box.replaceChildren(f);
+          box.classList.add('embed-loaded');
+        } else if (btn.dataset.loadEmbed === 'comments') {
+          var s = document.createElement('script');
+          s.src = 'https://utteranc.es/client.js';
+          s.async = true;
+          s.crossOrigin = 'anonymous';
+          s.setAttribute('repo', box.dataset.repo);
+          s.setAttribute('issue-term', 'pathname');
+          s.setAttribute('label', 'FN-');
+          s.setAttribute('theme', window.currentCommentTheme ? window.currentCommentTheme() : 'preferred-color-scheme');
+          box.replaceChildren(s);
+          box.classList.add('embed-loaded');
+        }
+      });
+      // Email links are assembled here so the address is not in the HTML for scrapers.
+      document.querySelectorAll('[data-mail]').forEach(function (a) {
+        var p = a.dataset.mail.split('|');
+        a.href = 'mailto:' + p[0] + '@' + p[1];
+      });
+      // "Copy link" share button.
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-copy-link]');
+        if (!btn) return;
+        var label = btn.querySelector('.label');
+        var done = function (text) { if (label) { label.textContent = text; setTimeout(function () { label.textContent = 'copy link'; }, 2000); } };
+        if (navigator.clipboard) navigator.clipboard.writeText(btn.dataset.copyLink).then(function () { done('copied'); }, function () { done('copy failed'); });
+        else done('copy failed');
+      });
+    </script>
+  </body>
 </html>

@@ -1,21 +1,21 @@
 {
   "title": "normuradov",
-  "url": "https://normuradov.com/",
+  "url": "https://www.normuradov.com/",
   "language": "en",
   "description": "I analyse and solve problems.",
   "feed": {
     "subtitle": "XML feed",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://normuradov.com/"
+    "id": "https://www.normuradov.com/"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://normuradov.com/feed/feed.json"
+    "url": "https://www.normuradov.com/feed/feed.json"
   },
   "author": {
     "name": "Farrukh Normuradov",
     "email": "[first-name][dot][last-name]@[google-mail].com",
-    "url": "https://normuradov.com/about-me/"
+    "url": "https://www.normuradov.com/about/"
   }
 }

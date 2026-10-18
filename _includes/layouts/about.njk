@@ -3,8 +3,12 @@ layout: layouts/base.njk
 templateClass: tmpl-about
 ---
 
-<h1>{{ title }}</h1>
-{{ content | safe }}
-<h2>my students / mentees about me</h2>
+<header class="page-header">
+  <h1>{{ title or "about" }}</h1>
+</header>
+<div class="prose">
+  {{ content | safe }}
+</div>
+<h2 class="section-title">my students / mentees about me</h2>
 {% set postslist = collections.endorsements %}
 {% include "postslist.njk" %}

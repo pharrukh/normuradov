@@ -1,4 +1,6 @@
 const fs = require("fs")
+const path = require("path")
+const Image = require("@11ty/eleventy-img")
 const { IgnoredTagsForMainCollection } = require("./logic/constants")
 
 const { DateTime } = require("luxon")
@@ -16,6 +18,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("img")
   eleventyConfig.addPassthroughCopy("js")
   eleventyConfig.addPassthroughCopy("css")
+  eleventyConfig.addPassthroughCopy("fonts")
   eleventyConfig.addPassthroughCopy({ favicon: "/." })
   // Add plugins
   eleventyConfig.addPlugin(pluginRss)
@@ -26,9 +29,8 @@ module.exports = function (eleventyConfig) {
    * Prefixes the given URL with the site's base URL.
    * @param {string} url
    */
-  eleventyConfig.addFilter("toAbsoluteUrl", (url) => {
-    return new URL(url, site.baseUrl).href
-  })
+  const toAbsoluteUrl = (url) => new URL(url, site.baseUrl).href
+  eleventyConfig.addFilter("toAbsoluteUrl", toAbsoluteUrl)
 
   /** Given a local or remote image source, returns the absolute URL
    * to the image that will eventually get generated once the site is built.
@@ -52,6 +54,50 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("toAbsoluteImageUrl", toAbsoluteImageUrl)
 
+  /**
+   * Responsive images: every <img src="/img/….png|jpg"> in the built HTML is replaced
+   * with a <picture> holding resized WebP + original-format versions (never upscaled),
+   * with width/height set to avoid layout shift and lazy loading. Originals in /img stay
+   * untouched, so the old URLs keep working.
+   */
+  const IMG_TAG = /<img\b([^>]*?)\bsrc="(\/img\/[^"]+\.(?:png|jpe?g))"([^>]*?)\/?>/gi
+  const attr = (attrs, name) => {
+    const m = attrs.match(new RegExp(`\\b${name}="([^"]*)"`, "i"))
+    return m ? m[1] : undefined
+  }
+  eleventyConfig.addTransform("responsive-images", async function (content) {
+    if (!(this.page.outputPath || "").endsWith(".html") || !content.includes('src="/img/')) {
+      return content
+    }
+    const tags = [...content.matchAll(IMG_TAG)]
+    for (const [tag, before, src, after] of tags) {
+      const file = path.join(__dirname, decodeURI(src))
+      if (!fs.existsSync(file)) {
+        console.warn(`[responsive-images] missing ${src} in ${this.page.inputPath}`)
+        continue
+      }
+      const attrs = `${before} ${after}`
+      const metadata = await Image(file, {
+        widths: [480, 960, 1600],
+        formats: ["webp", "auto"],
+        outputDir: path.join(__dirname, "_site/img/opt/"),
+        urlPath: "/img/opt/",
+        sharpWebpOptions: { quality: 80 },
+        sharpJpegOptions: { quality: 82, mozjpeg: true },
+      })
+      const html = Image.generateHTML(metadata, {
+        alt: attr(attrs, "alt") || "",
+        sizes: "(min-width: 44rem) 40rem, 100vw",
+        loading: "lazy",
+        decoding: "async",
+        ...(attr(attrs, "style") ? { style: attr(attrs, "style") } : {}),
+        ...(attr(attrs, "class") ? { class: attr(attrs, "class") } : {}),
+      })
+      content = content.replace(tag, html)
+    }
+    return content
+  })
+
   eleventyConfig.addFilter("encode", (url) => {
     return encodeURI(url)
   })
@@ -64,6 +110,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd")
   })
+
+  // Current year for the footer copyright (evaluated at build time).
+  eleventyConfig.addFilter("currentYear", () => new Date().getFullYear())
 
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {

@@ -1,6 +1,11 @@
+This repository contains two kinds of material under different terms.
+
+1. Code (templates, scripts, styles, configuration)
+
 MIT License
 
-Copyright (c) 2018 Zach Leatherman @zachleat
+Copyright (c) 2023-2026 Farrukh Normuradov
+Copyright (c) 2018 Zach Leatherman @zachleat (eleventy-base-blog, on which this site is based)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +24,20 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+2. Content (everything under posts/ and about/, and the photos in img/)
+
+Copyright (c) 2018-2026 Farrukh Normuradov. All rights reserved.
+Quoting short excerpts with attribution and a link is welcome; for anything
+more, please ask first. The endorsement texts under posts/endorsements/
+are published with their authors' permission and belong to them.
+
+3. Third-party assets
+
+- Fonts in fonts/ (Newsreader, Inter, JetBrains Mono): SIL Open Font License 1.1,
+  see fonts/LICENSE-*.txt.
+- Social icons in _includes/social-icons.njk: Simple Icons paths (CC0 1.0).
+  Brand names and logos belong to their owners and are used only to link to
+  my profiles.
+- Book covers shown in reviews belong to their publishers and are used for
+  review and identification.

@@ -2,62 +2,56 @@
 layout: layouts/base.njk
 templateClass: tmpl-post
 ---
-<h1>{{ title }}</h1>
+{%- set absoluteUrl = page.url | toAbsoluteUrl %}
+<article>
+  <header class="post-header">
+    <h1>{{ title }}</h1>
+    {%- if tags.includes("essay") and locations %}
+      <p class="locations eyebrow">{{ locations }}</p>
+    {%- endif %}
+    {%- if description %}
+      <p class="description">{{ description }}</p>
+    {%- endif %}
+    <div class="post-meta">
+      <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+      {%- for tag in tags | filterTagList %}
+        {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+        <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+      {%- endfor %}
+    </div>
+  </header>
 
-{%- if tags.includes("essay") %}
-  <p class="locations">{{locations}}</p>
-{%- endif %}
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+</article>
 
-<p class="description">{{ description }}</p>
-<time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
-{%- for tag in tags | filterTagList %}
-  {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-  <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
-{%- endfor %}
-{{ content | safe }}
-<div id="share-buttons" class="likely" data-url="{{ page.url | toAbsoluteUrl }}" data-title="{{ title }}">
-  <div class="facebook">Share</div>
-  <div class="twitter">Tweet</div>
-  <div class="telegram">Send</div>
-  <div class="linkedin">Share</div>
-  <div class="whatsapp">Send</div>
-  <div class="reddit">Share</div>
-</div>
-<script
-  src="https://utteranc.es/client.js"
-  repo="pharrukh/normuradov"
-  issue-term="pathname"
-  label="FN-"
-  theme="preferred-color-scheme"
-  crossorigin="anonymous"
-  async></script>
-  <script>
-    // Get the img object using its Id
-    img = document.getElementById('my-img');
-    // Function to increase image size
-    function enlargeImg() {
-        // Set image size to 1.5 times original
-        img.style.transform = "scale(1.5)";
-        // Animation effect
-        img.style.transition = "transform 0.25s ease";
-    }
-</script>
+{#- Plain share links: nothing is loaded from these networks until the reader clicks one. #}
+<aside class="share" aria-label="Share this post">
+  <span class="share-label">share</span>
+  <button type="button" class="share-link" data-copy-link="{{ absoluteUrl }}"><span class="label">copy link</span></button>
+  <a class="share-link" href="https://t.me/share/url?url={{ absoluteUrl | urlencode }}&text={{ title | urlencode }}" rel="noopener" target="_blank">telegram</a>
+  <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url={{ absoluteUrl | urlencode }}" rel="noopener" target="_blank">linkedin</a>
+  <a class="share-link" href="mailto:?subject={{ title | urlencode }}&body={{ absoluteUrl | urlencode }}">email</a>
+</aside>
+
+{#- Comments are GitHub issues via utterances; they load only on request. #}
+<section class="embed embed-comments" data-repo="pharrukh/normuradov" aria-label="Comments">
+  <button type="button" class="button" data-load-embed="comments">Show comments</button>
+  <p class="embed-note">Comments are hosted on GitHub. Loading them connects your browser to utteranc.es and github.com. See the <a href="{{ '/privacy/' | url }}">privacy page</a>.</p>
+</section>
+
 {%- if collections.posts %}
   {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
   {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
   {%- if nextPost or previousPost %}
-    <hr>
-      <ul>
-        {%- if nextPost %}
-          <li>Next:
-            <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a>
-          </li>
-        {%- endif %}
-        {%- if previousPost %}
-          <li>Previous:
-            <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a>
-          </li>
-        {%- endif %}
-      </ul>
-    {%- endif %}
+    <nav class="post-nav" aria-label="More posts">
+      {%- if previousPost %}
+        <a class="prev" href="{{ previousPost.url | url }}"><span class="label">previous</span>{{ previousPost.data.title }}</a>
+      {%- endif %}
+      {%- if nextPost %}
+        <a class="next" href="{{ nextPost.url | url }}"><span class="label">next</span>{{ nextPost.data.title }}</a>
+      {%- endif %}
+    </nav>
+  {%- endif %}
 {%- endif %}

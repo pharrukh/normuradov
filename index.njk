@@ -5,44 +5,59 @@ eleventyNavigation:
   order: 1
 ---
 
-<div class="small-projects-block">
-  <h2> my first youtube video</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/t0nBd7AhP0U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <h2>
-    projects
-  </h2>
-  <div class="projects">
-    <ul>
-      <li>
-        <a href="https://play.google.com/store/apps/details?id=com.normuradov.mindful30">mindful30</a>
-        -  Android app for developers
-      </li>
-      <li>
-        <a href="https://play.google.com/store/apps/details?id=com.normuradov.ajva">Ajva</a>
-        -  educational app (work in progress)
-      </li>
-      <li>
-        <a href="https://www.uzbekistananalytics.com/">uzbekistan analytics</a>
-        - services for Uzbekistanis</li>
-      <li>
-        <a href="https://www.npmjs.com/package/gdpr-person-generator">gdpr person generator</a>
-        - an npm package</li>
-    </ul>
+<section class="hero">
+  <h1>thoughts of a problem solver from <em>Samarkand</em></h1>
+  <p class="lede">{{ metadata.description }}</p>
+  <div class="hero-links">
+    <a class="button button-primary" href="{{ '/archive/' | url }}">read the archive</a>
+    <a class="button" href="{{ '/about/' | url }}">about me</a>
   </div>
-</div>
+</section>
+
 {% set maxPosts = collections.allMyContent.length | min(5) %}
-<h2>latest
-  {% if maxPosts == 1 %}Post
-  {% else %}
-    {{ maxPosts }} posts{% endif %}
-</h2>
+<h2 class="section-title">latest {% if maxPosts == 1 %}post{% else %}{{ maxPosts }} posts{% endif %}</h2>
 {% set postslist = collections.allMyContent | head(-5) %}
 {% set postslistCounter = collections.allMyContent | length %}
 {% include "postslist.njk" %}
-<div>
-  follow me 👉
-  <a href="https://t.me/fnormuradov">
-    <img style="width: 1em;" src="/img/tg-logo.png"></div>
-  </a>
-  <div>more posts can be found in
-    <a href="{{ '/archive/' | url }}">the archive</a>.</div>
+
+<h2 class="section-title">projects</h2>
+<ul class="projects">
+  <li>
+    <a class="project-card" href="https://play.google.com/store/apps/details?id=com.normuradov.mindful30">
+      <span class="project-name">mindful30 <span class="arrow" aria-hidden="true">↗</span></span>
+      <span class="project-desc">Android app for developers</span>
+    </a>
+  </li>
+  <li>
+    <a class="project-card" href="https://play.google.com/store/apps/details?id=com.normuradov.ajva">
+      <span class="project-name">Ajva <span class="arrow" aria-hidden="true">↗</span></span>
+      <span class="project-desc">educational app (work in progress)</span>
+    </a>
+  </li>
+  <li>
+    <a class="project-card" href="https://www.uzbekistananalytics.com/">
+      <span class="project-name">uzbekistan analytics <span class="arrow" aria-hidden="true">↗</span></span>
+      <span class="project-desc">services for Uzbekistanis</span>
+    </a>
+  </li>
+  <li>
+    <a class="project-card" href="https://www.npmjs.com/package/gdpr-person-generator">
+      <span class="project-name">gdpr person generator <span class="arrow" aria-hidden="true">↗</span></span>
+      <span class="project-desc">an npm package</span>
+    </a>
+  </li>
+</ul>
+
+<h2 class="section-title">my first youtube video</h2>
+{#- Click-to-load: YouTube is contacted only after the visitor presses play. #}
+<div class="embed embed-video" data-video="t0nBd7AhP0U" data-title="my first youtube video">
+  <button type="button" class="embed-play" data-load-embed="youtube" aria-label="Play video (loads YouTube)">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+  </button>
+  <p class="embed-note">Plays from YouTube (privacy-enhanced mode). Pressing play connects your browser to Google. <a href="https://www.youtube.com/watch?v=t0nBd7AhP0U" rel="noopener">Watch on YouTube</a> instead.</p>
+</div>
+
+<div class="home-footer-note">
+  <span>more posts are in <a href="{{ '/archive/' | url }}">the archive</a>.</span>
+  <span>follow me on <a href="https://t.me/fnormuradov">Telegram</a>.</span>
+</div>
