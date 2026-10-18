@@ -98,12 +98,17 @@ module.exports = function (eleventyConfig) {
     return content
   })
 
+  // Text for a Cloudinary l_text overlay: commas and slashes must be double-encoded.
+  eleventyConfig.addFilter("cloudinaryText", (text = "") =>
+    encodeURIComponent(text).replace(/%2C/g, "%252C").replace(/%2F/g, "%252F")
+  )
+
   eleventyConfig.addFilter("encode", (url) => {
     return encodeURI(url)
   })
 
-  eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy")
+  eleventyConfig.addFilter("readableDate", (dateObj, locale = "en") => {
+    return DateTime.fromJSDate(dateObj, { zone: "utc" }).setLocale(locale).toFormat("dd LLL yyyy")
   })
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
@@ -139,9 +144,35 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("filterTagList", filterTagList)
 
+  /**
+   * Translations: versions of one post share a `translationKey` in front matter.
+   * `primaryOnly` keeps one entry per key (the English version, else the first),
+   * so lists show each post once. `translationsOf` returns all versions of a key,
+   * ordered as in _data/i18n.js.
+   */
+  const LANG_ORDER = require("./_data/i18n").order
+  const langRank = (item) => {
+    const i = LANG_ORDER.indexOf(item.data.lang || "en")
+    return i === -1 ? LANG_ORDER.length : i
+  }
+  const primaryOnly = (items = []) => {
+    const best = new Map()
+    for (const item of items) {
+      const key = item.data.translationKey
+      if (!key) continue
+      const cur = best.get(key)
+      if (!cur || langRank(item) < langRank(cur)) best.set(key, item)
+    }
+    return items.filter((item) => !item.data.translationKey || best.get(item.data.translationKey) === item)
+  }
+  eleventyConfig.addFilter("primaryOnly", primaryOnly)
+  eleventyConfig.addFilter("translationsOf", (all = [], key) =>
+    key ? all.filter((item) => item.data.translationKey === key).sort((a, b) => langRank(a) - langRank(b)) : []
+  )
+
+  // Main posts (no endorsements), each translated post listed once.
   eleventyConfig.addCollection("allMyContent", (collectionApi) =>
-    collectionApi
-      .getAll()
+    primaryOnly(collectionApi.getAll())
       .filter(function (item) {
         if (Array.isArray(item.data.tags)) {
           return !item.data.tags.some((tag) =>
@@ -154,8 +185,9 @@ module.exports = function (eleventyConfig) {
       .sort(sortPostItemsByDate)
   )
 
+
   eleventyConfig.addCollection("endorsements", (api) =>
-    api.getFilteredByTag("endorsement")
+    primaryOnly(api.getFilteredByTag("endorsement"))
   )
 
   eleventyConfig.addCollection("essays", (api) =>

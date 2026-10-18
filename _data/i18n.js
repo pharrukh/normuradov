@@ -1,0 +1,67 @@
+// Languages the blog can show. Order = order of the language links.
+// To add a translation: give every version of a post the same `translationKey`
+// in its front matter and set `lang`. Mark generated translations with
+// `machineTranslated: true` so readers see a notice and a link to the original.
+module.exports = {
+  order: ["en", "ru", "de", "uz"],
+  languages: {
+    en: { name: "English", short: "EN" },
+    ru: { name: "Русский", short: "RU" },
+    de: { name: "Deutsch", short: "DE" },
+    uz: { name: "Oʻzbekcha", short: "UZ" },
+  },
+  strings: {
+    en: {
+      alsoIn: "also in",
+      share: "share",
+      copyLink: "copy link",
+      copied: "copied",
+      copyFailed: "copy failed",
+      showComments: "Show comments",
+      commentsNote: "Comments are hosted on GitHub. Loading them connects your browser to utteranc.es and github.com. See the",
+      privacyLink: "privacy page",
+      previous: "previous",
+      next: "next",
+      machineTranslated: "This is a machine translation. The original is here:",
+    },
+    ru: {
+      alsoIn: "на других языках",
+      share: "поделиться",
+      copyLink: "скопировать ссылку",
+      copied: "скопировано",
+      copyFailed: "не удалось",
+      showComments: "Показать комментарии",
+      commentsNote: "Комментарии хранятся на GitHub. При их загрузке ваш браузер подключится к utteranc.es и github.com. Подробнее —",
+      privacyLink: "на странице о конфиденциальности",
+      previous: "предыдущий",
+      next: "следующий",
+      machineTranslated: "Это машинный перевод. Оригинал:",
+    },
+    de: {
+      alsoIn: "auch auf",
+      share: "teilen",
+      copyLink: "Link kopieren",
+      copied: "kopiert",
+      copyFailed: "fehlgeschlagen",
+      showComments: "Kommentare anzeigen",
+      commentsNote: "Die Kommentare liegen auf GitHub. Beim Laden verbindet sich Ihr Browser mit utteranc.es und github.com. Mehr dazu auf der",
+      privacyLink: "Datenschutzseite (englisch)",
+      previous: "zurück",
+      next: "weiter",
+      machineTranslated: "Dies ist eine maschinelle Übersetzung. Zum Original:",
+    },
+    uz: {
+      alsoIn: "boshqa tillarda",
+      share: "ulashish",
+      copyLink: "havolani nusxalash",
+      copied: "nusxalandi",
+      copyFailed: "nusxalanmadi",
+      showComments: "Izohlarni koʻrsatish",
+      commentsNote: "Izohlar GitHubʼda saqlanadi. Ularni yuklasangiz, brauzeringiz utteranc.es va github.com bilan bogʻlanadi. Batafsil:",
+      privacyLink: "maxfiylik sahifasi (inglizcha)",
+      previous: "oldingi",
+      next: "keyingi",
+      machineTranslated: "Bu avtomatik (mashina) tarjimasi. Asl matn:",
+    },
+  },
+}

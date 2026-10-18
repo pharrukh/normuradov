@@ -10,6 +10,9 @@
     </script>
     <title>{% if title %}{{ title }} · {% endif %}{{ metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
+    {%- if noindex %}
+    <meta name="robots" content="noindex">
+    {%- endif %}
     {#- Fonts are self-hosted (see css/fonts.css) so no visitor data goes to Google Fonts. #}
     <link rel="preload" href="/fonts/newsreader-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ '/css/fonts.css' | url }}">
@@ -25,14 +28,21 @@
     <meta name="theme-color" content="#faf6ef" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)">
     <link rel="canonical" href="{{ page.url | toAbsoluteUrl }}">
+    {%- set _versions = collections.all | translationsOf(translationKey) %}
+    {%- if _versions.length > 1 %}
+      {%- for v in _versions %}
+    <link rel="alternate" hreflang="{{ v.data.lang or metadata.language }}" href="{{ v.url | toAbsoluteUrl }}">
+      {%- endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ (_versions | first).url | toAbsoluteUrl }}">
+    {%- endif %}
     <meta property="og:url" content="{{ page.url | toAbsoluteUrl }}"/>
-    <meta property="og:type" content="article"/>
+    <meta property="og:type" content="{% if templateClass == 'tmpl-post' %}article{% else %}website{% endif %}"/>
     <meta property="og:title" content="{{ title or metadata.title }}"/>
     <meta property="og:description" content="{{ description or metadata.description }}"/>
     <meta name="author" content="{{ metadata.author.name }}">
     <meta name="twitter:card" content="summary_large_image"/>
     {% if postImage %}
-      <meta name="twitter:image" property="og:image" content="{{ site.cloudinaryUrl }}/c_fill,h_589,w_1200/w_1200,f_auto/co_rgb:080000,e_colorize:50/w_100,g_south_east,x_40,y_40,l_logo_ffe8k4/w_100,g_north_west,x_40,y_40,l_qr_snofb6/l_text:Georgia_110_bold_center:{{ title | encode }},co_rgb:eee,c_fit,w_800/{{ postImage }}"/>
+      <meta name="twitter:image" property="og:image" content="{{ site.cloudinaryUrl }}c_fill,h_589,w_1200/w_1200,f_auto/co_rgb:080000,e_colorize:50/w_100,g_south_east,x_40,y_40,l_logo_ffe8k4/w_100,g_north_west,x_40,y_40,l_qr_snofb6/l_text:Georgia_110_bold_center:{{ title | cloudinaryText }},co_rgb:eee,c_fit,w_800/{{ postImage | replace("/", "", 1) }}"/>
       <meta name="twitter:image:alt" property="og:image:alt" content="{{ title }}"/>
     {% else %}
       <meta name="twitter:image" property="og:image" content="{{ site.meta.ogImg }}"/>
@@ -58,7 +68,7 @@
     </script>
 
     <!-- Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
-    <script type="text/javascript" src="https://www.freeprivacypolicy.com/public/cookie-consent/4.0.0/cookie-consent.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="https://www.freeprivacypolicy.com/public/cookie-consent/4.0.0/cookie-consent.js" charset="UTF-8" defer></script>
     <script type="text/javascript" charset="UTF-8">
       document.addEventListener('DOMContentLoaded', function () {
         if (!window.cookieconsent) return; {#- blocked (e.g. by an ad blocker): gated scripts simply stay off. #}
@@ -80,8 +90,29 @@
       });
     </script>
     <!-- End Cookie Consent by FreePrivacyPolicy.com -->
+    {%- if templateClass == 'tmpl-post' %}
+    <script type="application/ld+json">{{ {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": title,
+      "description": description or metadata.description,
+      "datePublished": page.date | htmlDateString,
+      "inLanguage": lang or metadata.language,
+      "url": page.url | toAbsoluteUrl,
+      "author": { "@type": "Person", "name": metadata.author.name, "url": metadata.author.url }
+    } | dump | safe }}</script>
+    {%- elif page.url == "/" or page.url == "/about/" %}
+    <script type="application/ld+json">{{ {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": metadata.author.name,
+      "url": metadata.url,
+      "sameAs": ["https://github.com/pharrukh", "https://www.linkedin.com/in/farrukh-normuradov/", "https://stackoverflow.com/users/3407539/farrukh-normuradov", "https://leetcode.com/pharrukh/", "https://t.me/fnormuradov"]
+    } | dump | safe }}</script>
+    {%- endif %}
   </head>
   <body>
+    <a class="skip-link" href="#main">skip to content</a>
     <header class="site-header">
       <div class="site-header-inner">
         <a class="logo" href="{{ '/' | url }}" aria-label="normuradov — home"><span class="bracket">[</span>n<span class="bracket">]</span></a>
@@ -122,7 +153,7 @@
           <li><a href="{{ metadata.feed.path | url }}">rss</a></li>
         </ul>
         {% include "social-icons.njk" %}
-        <p class="copyright">© {{ "now" | currentYear }} {{ metadata.author.name }} · written in Warsaw, rooted in Samarkand</p>
+        <p class="copyright">© {{ "now" | currentYear }} {{ metadata.author.name }} · written in Berlin, rooted in Samarkand</p>
       </div>
     </footer>
 
@@ -199,9 +230,10 @@
         var btn = e.target.closest('[data-copy-link]');
         if (!btn) return;
         var label = btn.querySelector('.label');
-        var done = function (text) { if (label) { label.textContent = text; setTimeout(function () { label.textContent = 'copy link'; }, 2000); } };
-        if (navigator.clipboard) navigator.clipboard.writeText(btn.dataset.copyLink).then(function () { done('copied'); }, function () { done('copy failed'); });
-        else done('copy failed');
+        var d = btn.dataset;
+        var done = function (text) { if (label) { label.textContent = text; setTimeout(function () { label.textContent = d.label || 'copy link'; }, 2000); } };
+        if (navigator.clipboard) navigator.clipboard.writeText(d.copyLink).then(function () { done(d.labelCopied || 'copied'); }, function () { done(d.labelFailed || 'copy failed'); });
+        else done(d.labelFailed || 'copy failed');
       });
     </script>
   </body>

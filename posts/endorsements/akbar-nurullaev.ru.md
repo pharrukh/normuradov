@@ -1,12 +1,12 @@
 ---
-eleventyExcludeFromCollections: true
-title: Akbar about me
-description: what my mentee Akbar writes about me
+title: "Акбар обо мне"
+description: "Что пишет обо мне мой менти Акбар"
 date: 2022-09-20
 tags: endorsement
 layout: layouts/post.njk
 author: Farrukh Normuradov
 lang: ru
+translationKey: endorsement-akbar
 ---
 
 > 20 сентября будет ровно два года со дня нашего знакомства с Фаррух ака с которым нас познакомил Темур Умаров (читайте пост выше). 2 года - огромный промежуток за которое поменялось очень многое.

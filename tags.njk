@@ -8,6 +8,9 @@ pagination:
     - post
     - posts
     - tagList
+    - allMyContent
+    - essays
+    - endorsements
   addAllPagesToCollections: true
 layout: layouts/home.njk
 eleventyComputed:
@@ -18,7 +21,7 @@ permalink: /tags/{{ tag | slugify }}/
 <header class="page-header">
   <h1>tagged “{{ tag }}”</h1>
 </header>
-{% set postslist = collections[ tag ] %}
+{% set postslist = collections[ tag ] | primaryOnly %}
 {% include "postslist.njk" %}
 <p>See
   <a href="{{ '/tags/' | url }}">all tags</a>.</p>

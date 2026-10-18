@@ -315,6 +315,12 @@ main > :first-child {
   max-width: 32rem;
   margin-bottom: 1.75rem;
 }
+.hero-now {
+  margin: 1.5rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
 .hero-links {
   display: flex;
   flex-wrap: wrap;
@@ -473,6 +479,35 @@ main > :first-child {
   font-family: var(--font-sans);
   font-size: 0.8rem;
   color: var(--muted);
+}
+
+/* Language versions */
+.post-langs {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.post-langs a {
+  margin-left: 0.35rem;
+}
+.lang-badges {
+  display: inline-flex;
+  gap: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+.lang-badges > * {
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.3rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+.lang-badges a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* ---------- Tags ---------- */
@@ -837,6 +872,24 @@ pre code {
   margin: 0.75rem 0 0;
   color: var(--muted);
   font-size: var(--step-0);
+}
+
+/* Skip link: hidden until focused with the keyboard */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 10;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 1rem;
 }
 
 /* ---------- Footer ---------- */

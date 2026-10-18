@@ -2,14 +2,14 @@
 permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
-
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {%- for page in collections.allMyContent %}
-    {% set absoluteUrl %}{{ page.url | url | absoluteUrl(metadata.url) }}{% endset %}
-    <url>
-      <loc>{{ absoluteUrl }}</loc>
-      <lastmod>{{ page.date | htmlDateString }}</lastmod>
-    </url>
+  {%- for item in collections.all %}
+    {%- if item.url and item.url.endsWith("/") and not item.url.startsWith("/tags/") and not item.url.startsWith("/page-list/") and not item.data.noindex %}
+  <url>
+    <loc>{{ item.url | toAbsoluteUrl }}</loc>
+    <lastmod>{{ item.date | htmlDateString }}</lastmod>
+  </url>
+    {%- endif %}
   {%- endfor %}
 </urlset>

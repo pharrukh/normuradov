@@ -3,6 +3,9 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 ---
 {%- set absoluteUrl = page.url | toAbsoluteUrl %}
+{%- set pageLang = lang or metadata.language %}
+{%- set t = i18n.strings[pageLang] or i18n.strings.en %}
+{%- set versions = collections.all | translationsOf(translationKey) %}
 <article>
   <header class="post-header">
     <h1>{{ title }}</h1>
@@ -13,13 +16,26 @@ templateClass: tmpl-post
       <p class="description">{{ description }}</p>
     {%- endif %}
     <div class="post-meta">
-      <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+      <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate(pageLang) }}</time>
       {%- for tag in tags | filterTagList %}
         {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
         <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
       {%- endfor %}
     </div>
+    {%- if versions.length > 1 %}
+      <p class="post-langs">{{ t.alsoIn }}:
+        {%- for v in versions %}{% if v.url != page.url %}
+          {%- set vl = v.data.lang or metadata.language %}
+          <a href="{{ v.url | url }}" lang="{{ vl }}" hreflang="{{ vl }}">{{ i18n.languages[vl].name }}</a>
+        {%- endif %}{% endfor %}
+      </p>
+    {%- endif %}
   </header>
+
+  {%- if machineTranslated and versions.length > 1 %}
+    {%- set original = versions | first %}
+    <p class="infobox">{{ t.machineTranslated }} <a href="{{ original.url | url }}" hreflang="{{ original.data.lang or metadata.language }}">{{ original.data.title }}</a></p>
+  {%- endif %}
 
   <div class="prose">
     {{ content | safe }}
@@ -27,30 +43,30 @@ templateClass: tmpl-post
 </article>
 
 {#- Plain share links: nothing is loaded from these networks until the reader clicks one. #}
-<aside class="share" aria-label="Share this post">
-  <span class="share-label">share</span>
-  <button type="button" class="share-link" data-copy-link="{{ absoluteUrl }}"><span class="label">copy link</span></button>
+<aside class="share" aria-label="{{ t.share }}">
+  <span class="share-label">{{ t.share }}</span>
+  <button type="button" class="share-link" data-copy-link="{{ absoluteUrl }}" data-label="{{ t.copyLink }}" data-label-copied="{{ t.copied }}" data-label-failed="{{ t.copyFailed }}"><span class="label">{{ t.copyLink }}</span></button>
   <a class="share-link" href="https://t.me/share/url?url={{ absoluteUrl | urlencode }}&text={{ title | urlencode }}" rel="noopener" target="_blank">telegram</a>
   <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url={{ absoluteUrl | urlencode }}" rel="noopener" target="_blank">linkedin</a>
   <a class="share-link" href="mailto:?subject={{ title | urlencode }}&body={{ absoluteUrl | urlencode }}">email</a>
 </aside>
 
 {#- Comments are GitHub issues via utterances; they load only on request. #}
-<section class="embed embed-comments" data-repo="pharrukh/normuradov" aria-label="Comments">
-  <button type="button" class="button" data-load-embed="comments">Show comments</button>
-  <p class="embed-note">Comments are hosted on GitHub. Loading them connects your browser to utteranc.es and github.com. See the <a href="{{ '/privacy/' | url }}">privacy page</a>.</p>
+<section class="embed embed-comments" data-repo="pharrukh/normuradov" aria-label="{{ t.showComments }}">
+  <button type="button" class="button" data-load-embed="comments">{{ t.showComments }}</button>
+  <p class="embed-note">{{ t.commentsNote }} <a href="{{ '/privacy/' | url }}">{{ t.privacyLink }}</a>.</p>
 </section>
 
-{%- if collections.posts %}
-  {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
-  {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+{%- if collections.allMyContent %}
+  {%- set nextPost = collections.allMyContent | getNextCollectionItem(page) %}
+  {%- set previousPost = collections.allMyContent | getPreviousCollectionItem(page) %}
   {%- if nextPost or previousPost %}
-    <nav class="post-nav" aria-label="More posts">
+    <nav class="post-nav" aria-label="{{ t.previous }} / {{ t.next }}">
       {%- if previousPost %}
-        <a class="prev" href="{{ previousPost.url | url }}"><span class="label">previous</span>{{ previousPost.data.title }}</a>
+        <a class="prev" href="{{ previousPost.url | url }}"><span class="label">{{ t.previous }}</span>{{ previousPost.data.title }}</a>
       {%- endif %}
       {%- if nextPost %}
-        <a class="next" href="{{ nextPost.url | url }}"><span class="label">next</span>{{ nextPost.data.title }}</a>
+        <a class="next" href="{{ nextPost.url | url }}"><span class="label">{{ t.next }}</span>{{ nextPost.data.title }}</a>
       {%- endif %}
     </nav>
   {%- endif %}

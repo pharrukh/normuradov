@@ -28,6 +28,18 @@ Self-hosted from `fonts/` and declared in `css/fonts.css`, so no visitor data go
 - Share buttons are plain links.
 - Update `privacy/index.md` whenever you add a service that receives visitor data.
 
+## Languages
+
+Posts are written in English, Russian or German. Uzbek versions can be added as machine translations.
+
+To add a translation:
+
+1. Copy the post next to the original with a language suffix, e.g. `2022-08-31-ru.md`.
+2. Set `lang: ru` and give both files the same `translationKey: <some-key>`.
+3. For a generated translation, also set `machineTranslated: true`. Readers then see a notice with a link to the original.
+
+Lists show each post once (the English version if there is one), with `EN · RU · DE` badges. Each post page links its other versions, and `hreflang` tags tell search engines they're translations. Interface labels and dates follow the post's `lang`; the strings are in `_data/i18n.js`.
+
 ## Images
 
 Post images live in `img/`. During the build every `<img src="/img/…">` becomes a responsive `<picture>` with WebP and original-format versions in `_site/img/opt/`. Before adding a phone photo, strip its EXIF data, which may include GPS location.

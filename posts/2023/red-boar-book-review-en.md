@@ -1,9 +1,8 @@
 ---
-title: read red book with boar if you are not junior
-description: review on the masterpiece by Dr Martin Kleppmann - Designing Data-Intensive Applications
+title: "Designing Data-Intensive Applications: read it if you're past junior"
+description: "A review of Martin Kleppmann's book, the red one with the boar."
 date: 2023-02-19
-tags:
-  - book review
+tags: books
 layout: layouts/post.njk
 author: Farrukh Normuradov
 postImage: /code.jpg

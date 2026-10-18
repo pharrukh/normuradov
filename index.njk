@@ -11,7 +11,9 @@ eleventyNavigation:
   <div class="hero-links">
     <a class="button button-primary" href="{{ '/archive/' | url }}">read the archive</a>
     <a class="button" href="{{ '/about/' | url }}">about me</a>
+    <a class="button" href="https://t.me/fnormuradov">telegram ↗</a>
   </div>
+  <p class="hero-now">These days I post shorter notes on <a href="https://t.me/fnormuradov">Telegram</a>.</p>
 </section>
 
 {% set maxPosts = collections.allMyContent.length | min(5) %}
@@ -23,13 +25,13 @@ eleventyNavigation:
 <h2 class="section-title">projects</h2>
 <ul class="projects">
   <li>
-    <a class="project-card" href="https://play.google.com/store/apps/details?id=com.normuradov.mindful30">
+    <a class="project-card" href="https://github.com/pharrukh/mindful30">
       <span class="project-name">mindful30 <span class="arrow" aria-hidden="true">↗</span></span>
       <span class="project-desc">Android app for developers</span>
     </a>
   </li>
   <li>
-    <a class="project-card" href="https://play.google.com/store/apps/details?id=com.normuradov.ajva">
+    <a class="project-card" href="https://github.com/pharrukh/Ajva">
       <span class="project-name">Ajva <span class="arrow" aria-hidden="true">↗</span></span>
       <span class="project-desc">educational app (work in progress)</span>
     </a>
@@ -59,5 +61,4 @@ eleventyNavigation:
 
 <div class="home-footer-note">
   <span>more posts are in <a href="{{ '/archive/' | url }}">the archive</a>.</span>
-  <span>follow me on <a href="https://t.me/fnormuradov">Telegram</a>.</span>
 </div>

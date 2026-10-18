@@ -6,6 +6,7 @@ tags: endorsement
 layout: layouts/post.njk
 author: Farrukh Normuradov
 lang: en
+translationKey: endorsement-akbar
 ---
 
 Particularly in my life, Farrukh played an impactful role embarking on many breakthroughs in it. In periods of uncertainty and vagueness, he acted as a lighthouse lighting the right path. Unfortunately or fortunately, I did not always follow, which might be because of my stubbornness or basic forgetfulness. However, obtained ideas and pieces of advice that were not used in time were crucial in the long-term, and I firmly believe that they are one of the main reasons who I became.
